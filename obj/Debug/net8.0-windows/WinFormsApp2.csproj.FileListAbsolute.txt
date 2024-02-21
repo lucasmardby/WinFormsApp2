@@ -1,0 +1,16 @@
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\WinFormsApp2.csproj.GenerateResource.cache
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\WinFormsApp2.GeneratedMSBuildEditorConfig.editorconfig
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\WinFormsApp2.AssemblyInfoInputs.cache
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\WinFormsApp2.AssemblyInfo.cs
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\WinFormsApp2.csproj.CoreCompileInputs.cache
+E:\Code\WinFormsApp2\bin\Debug\net8.0-windows\WinFormsApp2.exe
+E:\Code\WinFormsApp2\bin\Debug\net8.0-windows\WinFormsApp2.deps.json
+E:\Code\WinFormsApp2\bin\Debug\net8.0-windows\WinFormsApp2.runtimeconfig.json
+E:\Code\WinFormsApp2\bin\Debug\net8.0-windows\WinFormsApp2.dll
+E:\Code\WinFormsApp2\bin\Debug\net8.0-windows\WinFormsApp2.pdb
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\WinFormsApp2.MainForm.resources
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\WinFormsApp2.dll
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\refint\WinFormsApp2.dll
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\WinFormsApp2.pdb
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\WinFormsApp2.genruntimeconfig.cache
+E:\Code\WinFormsApp2\obj\Debug\net8.0-windows\ref\WinFormsApp2.dll
