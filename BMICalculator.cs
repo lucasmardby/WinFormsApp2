@@ -73,5 +73,28 @@
 
             return textOut;
         }
+        public string CalculateNormalWeight()
+        {
+            double factor = 0;
+            string measurement = "";
+
+            if (GetUnit() == UnitTypes.Metric)
+            {
+                factor = 1;
+                measurement = "kg";
+            }
+            else 
+            {
+                factor = 703;
+                measurement = "lbs";
+            }
+
+            double lowWeight = height * height / factor * 18.50;
+            double highWeight = height * height / factor * 24.90;
+
+            string weightValues = $"Normal weight should be between {lowWeight:0.00} and {highWeight:0.00} {measurement}";
+
+            return weightValues;
+        }
     }
 }

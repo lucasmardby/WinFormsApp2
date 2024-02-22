@@ -39,11 +39,15 @@
             rbtnMetric = new RadioButton();
             btnCalculate = new Button();
             grpResults = new GroupBox();
+            lblNormalWeight = new Label();
             lblNormalBMI = new Label();
             lblResultWeightCategory = new Label();
             lblResultYourBMI = new Label();
             lblWeightCategory = new Label();
             lblYourBMI = new Label();
+            txtUSInches = new TextBox();
+            lblFeet = new Label();
+            lblInches = new Label();
             groupBox1.SuspendLayout();
             grpResults.SuspendLayout();
             SuspendLayout();
@@ -143,6 +147,7 @@
             // 
             // grpResults
             // 
+            grpResults.Controls.Add(lblNormalWeight);
             grpResults.Controls.Add(lblNormalBMI);
             grpResults.Controls.Add(lblResultWeightCategory);
             grpResults.Controls.Add(lblResultYourBMI);
@@ -155,21 +160,31 @@
             grpResults.TabStop = false;
             grpResults.Text = "Results";
             // 
+            // lblNormalWeight
+            // 
+            lblNormalWeight.ForeColor = Color.Green;
+            lblNormalWeight.Location = new Point(28, 141);
+            lblNormalWeight.Name = "lblNormalWeight";
+            lblNormalWeight.Size = new Size(380, 23);
+            lblNormalWeight.TabIndex = 5;
+            lblNormalWeight.Text = "lblNormalWeight";
+            lblNormalWeight.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // lblNormalBMI
             // 
-            lblNormalBMI.Location = new Point(216, 104);
+            lblNormalBMI.Location = new Point(160, 104);
             lblNormalBMI.Name = "lblNormalBMI";
-            lblNormalBMI.Size = new Size(192, 23);
+            lblNormalBMI.Size = new Size(248, 23);
             lblNormalBMI.TabIndex = 4;
-            lblNormalBMI.Text = "label5";
+            lblNormalBMI.Text = "lblNormalBMI";
             lblNormalBMI.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblResultWeightCategory
             // 
             lblResultWeightCategory.BorderStyle = BorderStyle.Fixed3D;
-            lblResultWeightCategory.Location = new Point(216, 68);
+            lblResultWeightCategory.Location = new Point(160, 68);
             lblResultWeightCategory.Name = "lblResultWeightCategory";
-            lblResultWeightCategory.Size = new Size(192, 23);
+            lblResultWeightCategory.Size = new Size(248, 23);
             lblResultWeightCategory.TabIndex = 3;
             lblResultWeightCategory.TextAlign = ContentAlignment.MiddleRight;
             // 
@@ -200,11 +215,39 @@
             lblYourBMI.TabIndex = 0;
             lblYourBMI.Text = "Your BMI";
             // 
+            // txtUSInches
+            // 
+            txtUSInches.Location = new Point(196, 55);
+            txtUSInches.Name = "txtUSInches";
+            txtUSInches.Size = new Size(51, 23);
+            txtUSInches.TabIndex = 9;
+            // 
+            // lblFeet
+            // 
+            lblFeet.AutoSize = true;
+            lblFeet.Location = new Point(173, 59);
+            lblFeet.Name = "lblFeet";
+            lblFeet.Size = new Size(15, 15);
+            lblFeet.TabIndex = 10;
+            lblFeet.Text = "ft";
+            // 
+            // lblInches
+            // 
+            lblInches.AutoSize = true;
+            lblInches.Location = new Point(253, 59);
+            lblInches.Name = "lblInches";
+            lblInches.Size = new Size(17, 15);
+            lblInches.TabIndex = 11;
+            lblInches.Text = "in";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(476, 450);
+            Controls.Add(lblInches);
+            Controls.Add(lblFeet);
+            Controls.Add(txtUSInches);
             Controls.Add(grpResults);
             Controls.Add(btnCalculate);
             Controls.Add(groupBox1);
@@ -214,8 +257,11 @@
             Controls.Add(txtHeight);
             Controls.Add(lblName);
             Controls.Add(txtName);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "MainForm";
-            Text = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "BMI Calculator, by Lucas Mårdby";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             grpResults.ResumeLayout(false);
@@ -242,5 +288,9 @@
         private Label lblYourBMI;
         private Label lblNormalBMI;
         private Label lblResultWeightCategory;
+        private Label lblNormalWeight;
+        private TextBox txtUSInches;
+        private Label lblFeet;
+        private Label lblInches;
     }
 }

@@ -11,14 +11,20 @@ namespace WinFormsApp2
 
         private void InitializeGUI()
         {
-            this.Text = "The Body Mass Calculator";
-
             rbtnMetric.Checked = true;
             lblHeight.Text = "Height (cm)";
             lblWeight.Text = "Weight (kg)";
 
+            txtName.Text = string.Empty;
             txtHeight.Text = string.Empty;
             txtWeight.Text = string.Empty;
+
+            lblFeet.Visible = false;
+            lblInches.Visible = false;
+            txtUSInches.Visible = false;
+
+            lblNormalBMI.Text = "Normal BMI is between 18.50 and 24.90";
+            lblNormalWeight.Text = string.Empty;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,6 +44,10 @@ namespace WinFormsApp2
                 lblHeight.Text = "Height (cm)";
                 lblWeight.Text = "Weight (kg)";
                 bmiCalc.SetUnit(UnitTypes.Metric);
+
+                lblFeet.Visible = false;
+                lblInches.Visible = false;
+                txtUSInches.Visible = false;
             }
         }
         private void rbtnUsUnit_CheckedChanged(object sender, EventArgs e)
@@ -47,6 +57,10 @@ namespace WinFormsApp2
                 lblHeight.Text = "Height (feet)";
                 lblWeight.Text = "Weight (lbs)";
                 bmiCalc.SetUnit(UnitTypes.Imperial);
+
+                lblFeet.Visible = true;
+                lblInches.Visible = true;
+                txtUSInches.Visible = true;
             }
         }
 
@@ -60,6 +74,7 @@ namespace WinFormsApp2
         private bool ReadHeight()
         {
             bool ok = double.TryParse(txtHeight.Text.Trim(), out double height);
+            double heightInches = double.Parse(txtUSInches.Text.Trim());
 
             if (height > 0)
             {
@@ -69,7 +84,7 @@ namespace WinFormsApp2
                 }
                 else
                 { 
-                    bmiCalc.SetHeight(height * 12.00);
+                    bmiCalc.SetHeight(height * 12.00 + heightInches);
                 }
             }
             else
@@ -117,6 +132,7 @@ namespace WinFormsApp2
             lblResultYourBMI.Text = bmiCalc.CalculateBMI().ToString("0.00");
             lblResultWeightCategory.Text = bmiCalc.BMIWeightCategory();
             grpResults.Text = $"Results for {bmiCalc.GetName()}";
+            lblNormalWeight.Text = bmiCalc.CalculateNormalWeight();
         }
     }
 }
