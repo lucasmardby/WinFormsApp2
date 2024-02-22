@@ -36,10 +36,16 @@
             txtWeight = new TextBox();
             groupBox1 = new GroupBox();
             rbtnUsUnit = new RadioButton();
-            radioButton1 = new RadioButton();
-            button1 = new Button();
-            groupBox2 = new GroupBox();
+            rbtnMetric = new RadioButton();
+            btnCalculate = new Button();
+            grpResults = new GroupBox();
+            lblNormalBMI = new Label();
+            lblResultWeightCategory = new Label();
+            lblResultYourBMI = new Label();
+            lblWeightCategory = new Label();
+            lblYourBMI = new Label();
             groupBox1.SuspendLayout();
+            grpResults.SuspendLayout();
             SuspendLayout();
             // 
             // txtName
@@ -63,9 +69,9 @@
             lblHeight.AutoSize = true;
             lblHeight.Location = new Point(25, 58);
             lblHeight.Name = "lblHeight";
-            lblHeight.Size = new Size(26, 15);
+            lblHeight.Size = new Size(43, 15);
             lblHeight.TabIndex = 3;
-            lblHeight.Text = "test";
+            lblHeight.Text = "Height";
             // 
             // txtHeight
             // 
@@ -79,9 +85,9 @@
             lblWeight.AutoSize = true;
             lblWeight.Location = new Point(25, 87);
             lblWeight.Name = "lblWeight";
-            lblWeight.Size = new Size(26, 15);
+            lblWeight.Size = new Size(45, 15);
             lblWeight.TabIndex = 5;
-            lblWeight.Text = "test";
+            lblWeight.Text = "Weight";
             // 
             // txtWeight
             // 
@@ -93,7 +99,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(rbtnUsUnit);
-            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Controls.Add(rbtnMetric);
             groupBox1.Location = new Point(288, 55);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(168, 82);
@@ -111,44 +117,96 @@
             rbtnUsUnit.TabStop = true;
             rbtnUsUnit.Text = "US Unit (foot, lbs)";
             rbtnUsUnit.UseVisualStyleBackColor = true;
+            rbtnUsUnit.CheckedChanged += rbtnUsUnit_CheckedChanged;
             // 
-            // radioButton1
+            // rbtnMetric
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(14, 23);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(131, 19);
-            radioButton1.TabIndex = 0;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Metric Unit (kg, cm)";
-            radioButton1.UseVisualStyleBackColor = true;
+            rbtnMetric.AutoSize = true;
+            rbtnMetric.Location = new Point(14, 23);
+            rbtnMetric.Name = "rbtnMetric";
+            rbtnMetric.Size = new Size(131, 19);
+            rbtnMetric.TabIndex = 0;
+            rbtnMetric.TabStop = true;
+            rbtnMetric.Text = "Metric Unit (cm, kg)";
+            rbtnMetric.UseVisualStyleBackColor = true;
+            rbtnMetric.CheckedChanged += rbtnMetric_CheckedChanged;
             // 
-            // button1
+            // btnCalculate
             // 
-            button1.Location = new Point(185, 143);
-            button1.Name = "button1";
-            button1.Size = new Size(108, 27);
-            button1.TabIndex = 7;
-            button1.Text = "Calculate";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnCalculate.Location = new Point(185, 143);
+            btnCalculate.Name = "btnCalculate";
+            btnCalculate.Size = new Size(108, 27);
+            btnCalculate.TabIndex = 7;
+            btnCalculate.Text = "Calculate";
+            btnCalculate.UseVisualStyleBackColor = true;
+            btnCalculate.Click += button1_Click;
             // 
-            // groupBox2
+            // grpResults
             // 
-            groupBox2.Location = new Point(25, 176);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(431, 226);
-            groupBox2.TabIndex = 8;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Results for [name]";
+            grpResults.Controls.Add(lblNormalBMI);
+            grpResults.Controls.Add(lblResultWeightCategory);
+            grpResults.Controls.Add(lblResultYourBMI);
+            grpResults.Controls.Add(lblWeightCategory);
+            grpResults.Controls.Add(lblYourBMI);
+            grpResults.Location = new Point(25, 176);
+            grpResults.Name = "grpResults";
+            grpResults.Size = new Size(431, 226);
+            grpResults.TabIndex = 8;
+            grpResults.TabStop = false;
+            grpResults.Text = "Results";
+            // 
+            // lblNormalBMI
+            // 
+            lblNormalBMI.Location = new Point(216, 104);
+            lblNormalBMI.Name = "lblNormalBMI";
+            lblNormalBMI.Size = new Size(192, 23);
+            lblNormalBMI.TabIndex = 4;
+            lblNormalBMI.Text = "label5";
+            lblNormalBMI.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblResultWeightCategory
+            // 
+            lblResultWeightCategory.BorderStyle = BorderStyle.Fixed3D;
+            lblResultWeightCategory.Location = new Point(216, 68);
+            lblResultWeightCategory.Name = "lblResultWeightCategory";
+            lblResultWeightCategory.Size = new Size(192, 23);
+            lblResultWeightCategory.TabIndex = 3;
+            lblResultWeightCategory.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblResultYourBMI
+            // 
+            lblResultYourBMI.BorderStyle = BorderStyle.Fixed3D;
+            lblResultYourBMI.Location = new Point(342, 32);
+            lblResultYourBMI.Name = "lblResultYourBMI";
+            lblResultYourBMI.Size = new Size(66, 23);
+            lblResultYourBMI.TabIndex = 2;
+            lblResultYourBMI.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblWeightCategory
+            // 
+            lblWeightCategory.AutoSize = true;
+            lblWeightCategory.Location = new Point(28, 72);
+            lblWeightCategory.Name = "lblWeightCategory";
+            lblWeightCategory.Size = new Size(96, 15);
+            lblWeightCategory.TabIndex = 1;
+            lblWeightCategory.Text = "Weight Category";
+            // 
+            // lblYourBMI
+            // 
+            lblYourBMI.AutoSize = true;
+            lblYourBMI.Location = new Point(28, 36);
+            lblYourBMI.Name = "lblYourBMI";
+            lblYourBMI.Size = new Size(55, 15);
+            lblYourBMI.TabIndex = 0;
+            lblYourBMI.Text = "Your BMI";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(476, 450);
-            Controls.Add(groupBox2);
-            Controls.Add(button1);
+            Controls.Add(grpResults);
+            Controls.Add(btnCalculate);
             Controls.Add(groupBox1);
             Controls.Add(lblWeight);
             Controls.Add(txtWeight);
@@ -160,6 +218,8 @@
             Text = "Form1";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            grpResults.ResumeLayout(false);
+            grpResults.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -174,8 +234,13 @@
         private TextBox txtWeight;
         private GroupBox groupBox1;
         private RadioButton rbtnUsUnit;
-        private RadioButton radioButton1;
-        private Button button1;
-        private GroupBox groupBox2;
+        private RadioButton rbtnMetric;
+        private Button btnCalculate;
+        private GroupBox grpResults;
+        private Label lblResultYourBMI;
+        private Label lblWeightCategory;
+        private Label lblYourBMI;
+        private Label lblNormalBMI;
+        private Label lblResultWeightCategory;
     }
 }

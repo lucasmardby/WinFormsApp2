@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-namespace WinFormsApp2
+﻿namespace WinFormsApp2
 {
     internal class BMICalculator
     {
@@ -53,7 +50,7 @@ namespace WinFormsApp2
 
         public double CalculateBMI()
         {
-            double amount = 703.0 * weight / (height * height * 12);
+            double amount = weight / (height * height);
             return amount;
         }
         public string BMIWeightCategory()

@@ -13,20 +13,40 @@ namespace WinFormsApp2
         {
             this.Text = "The Body Mass Calculator";
 
-            rbtnUsUnit.Checked = true;
-            lblHeight.Text = "Height (feet)";
-            lblWeight.Text = "Weight (lbs)";
+            rbtnMetric.Checked = true;
+            lblHeight.Text = "Height (cm)";
+            lblWeight.Text = "Weight (kg)";
 
             txtHeight.Text = string.Empty;
             txtWeight.Text = string.Empty;
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
+            bmiCalc.SetName(txtName.Text.Trim());
             bool ok = ReadInputBMI();
 
             if (ok)
             {
-                //DisplayResults();
+                DisplayResults();
+            }
+        }
+        private void rbtnMetric_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnMetric.Checked)
+            {
+                lblHeight.Text = "Height (cm)";
+                lblWeight.Text = "Weight (kg)";
+                bmiCalc.SetUnit(UnitTypes.Metric);
+            }
+        }
+        private void rbtnUsUnit_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnUsUnit.Checked)
+            {
+                lblHeight.Text = "Height (feet)";
+                lblWeight.Text = "Weight (lbs)";
+                bmiCalc.SetUnit(UnitTypes.Imperial);
             }
         }
 
@@ -37,60 +57,66 @@ namespace WinFormsApp2
 
             return heightOK && weightOK;
         }
-
-        private string ReadName()
-        {
-            string name = txtName.Text;
-
-            if (name.IsNotNullOrEmpty())
-            {
-                return name;
-            }
-            else
-            {
-                name = "No Name";
-                return name;
-            }
-        }
-
         private bool ReadHeight()
         {
-            bool ok;
-            string strHeight = txtHeight.Text;
-            strHeight = strHeight.Trim();
-            ok = double.TryParse(strHeight, out double height);
+            bool ok = double.TryParse(txtHeight.Text.Trim(), out double height);
 
-            if (ok)
+            if (height > 0)
             {
-                bmiCalc.SetHeight(height);
+                if (bmiCalc.GetUnit() == UnitTypes.Metric)
+                {
+                    bmiCalc.SetHeight(height / 100.00);
+                }
+                else
+                { 
+                    bmiCalc.SetHeight(height * 12.00);
+                }
             }
             else
             {
-                MessageBox.Show("Invalid amount!", "Error!");
+                ok = false;
             }
+
+            if(!ok)
+            {
+                MessageBox.Show("Invalid height value!", "Error!");
+            }
+                
             return ok;
         }
         private bool ReadWeight()
         {
-            bool ok;
-            string strWeight = txtHeight.Text;
-            strWeight = strWeight.Trim();
-            ok = double.TryParse(strWeight, out double weight);
+            bool ok = double.TryParse(txtWeight.Text.Trim(), out double weight);
 
-            if (ok)
+            if (weight > 0)
             {
-                bmiCalc.SetWeight(weight);
+                if (bmiCalc.GetUnit() == UnitTypes.Metric)
+                {
+                    bmiCalc.SetWeight(weight);
+                }
+                else
+                {
+                    bmiCalc.SetWeight(weight * 703.00);
+                }
             }
             else
             {
-                MessageBox.Show("Invalid amount!", "Error!");
+                ok = false;
             }
+
+            if (!ok)
+            {
+                MessageBox.Show("Invalid weight value!", "Error!");
+            }
+
             return ok;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void DisplayResults()
         {
-
+            lblResultYourBMI.Text = bmiCalc.CalculateBMI().ToString("0.00");
+            lblResultWeightCategory.Text = bmiCalc.BMIWeightCategory();
+            grpResults.Text = $"Results for {bmiCalc.GetName()}";
         }
     }
 }
