@@ -75,15 +75,10 @@
         }
         public string CalculateNormalWeight()
         {
-            double factor = 0;
-            string measurement = "";
+            double factor = 1;
+            string measurement = "kg";
 
-            if (GetUnit() == UnitTypes.Metric)
-            {
-                factor = 1;
-                measurement = "kg";
-            }
-            else 
+            if (GetUnit() == UnitTypes.Imperial)
             {
                 factor = 703;
                 measurement = "lbs";

@@ -27,10 +27,9 @@ namespace WinFormsApp2
             lblNormalWeight.Text = string.Empty;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBMICalc_Click(object sender, EventArgs e)
         {
-            bmiCalc.SetName(txtName.Text.Trim());
-            bool ok = ReadInputBMI();
+            bool ok = ReadInput();
 
             if (ok)
             {
@@ -64,8 +63,36 @@ namespace WinFormsApp2
             }
         }
 
-        private bool ReadInputBMI()
+        private void ReadName()
         {
+            txtName.Text = txtName.Text.Trim();
+            if (txtName.Text.IsNotNullOrEmpty())
+            { 
+                bmiCalc.SetName(txtName.Text);
+            }
+            else
+            {
+                bmiCalc.SetName("No Name");
+            }
+        }
+
+        private void ReadUnitType()
+        {
+            txtName.Text = txtName.Text.Trim();
+            if (txtName.Text.IsNotNullOrEmpty())
+            {
+                bmiCalc.SetName(txtName.Text);
+            }
+            else
+            {
+                bmiCalc.SetName("No Name");
+            }
+        }
+
+        private bool ReadInput()
+        {
+            ReadName();
+            //ReadUnitType();
             bool heightOK = ReadHeight();
             bool weightOK = ReadWeight();
 
@@ -74,7 +101,12 @@ namespace WinFormsApp2
         private bool ReadHeight()
         {
             bool ok = double.TryParse(txtHeight.Text.Trim(), out double height);
-            double heightInches = double.Parse(txtUSInches.Text.Trim());
+            double heightInches = 0.00;
+
+            if (bmiCalc.GetUnit() == UnitTypes.Imperial)
+            {
+                heightInches = double.Parse(txtUSInches.Text.Trim());
+            }
 
             if (height > 0)
             {
