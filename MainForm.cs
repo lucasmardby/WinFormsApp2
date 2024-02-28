@@ -3,6 +3,7 @@ namespace WinFormsApp2
     public partial class MainForm : Form
     {
         private BMICalculator bmiCalc = new();
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,7 +24,7 @@ namespace WinFormsApp2
             lblInches.Visible = false;
             txtUSInches.Visible = false;
 
-            lblNormalBMI.Text = "Normal BMI is between 18.50 and 24.90";
+            lblNormalBMI.Text = string.Empty;
             lblNormalWeight.Text = string.Empty;
         }
 
@@ -42,7 +43,6 @@ namespace WinFormsApp2
             {
                 lblHeight.Text = "Height (cm)";
                 lblWeight.Text = "Weight (kg)";
-                bmiCalc.SetUnit(UnitTypes.Metric);
 
                 lblFeet.Visible = false;
                 lblInches.Visible = false;
@@ -55,7 +55,6 @@ namespace WinFormsApp2
             {
                 lblHeight.Text = "Height (feet)";
                 lblWeight.Text = "Weight (lbs)";
-                bmiCalc.SetUnit(UnitTypes.Imperial);
 
                 lblFeet.Visible = true;
                 lblInches.Visible = true;
@@ -63,11 +62,22 @@ namespace WinFormsApp2
             }
         }
 
+        private bool ReadInput()
+        {
+            ReadName();
+            ReadUnitType();
+
+            bool heightOK = ReadHeight();
+            bool weightOK = ReadWeight();
+            
+
+            return heightOK && weightOK;
+        }
         private void ReadName()
         {
             txtName.Text = txtName.Text.Trim();
             if (txtName.Text.IsNotNullOrEmpty())
-            { 
+            {
                 bmiCalc.SetName(txtName.Text);
             }
             else
@@ -75,28 +85,16 @@ namespace WinFormsApp2
                 bmiCalc.SetName("No Name");
             }
         }
-
         private void ReadUnitType()
         {
-            txtName.Text = txtName.Text.Trim();
-            if (txtName.Text.IsNotNullOrEmpty())
+            if (rbtnMetric.Checked)
             {
-                bmiCalc.SetName(txtName.Text);
+                bmiCalc.SetUnit(UnitTypes.Metric);
             }
-            else
+            else if (rbtnUsUnit.Checked)
             {
-                bmiCalc.SetName("No Name");
+                bmiCalc.SetUnit(UnitTypes.Imperial);
             }
-        }
-
-        private bool ReadInput()
-        {
-            ReadName();
-            //ReadUnitType();
-            bool heightOK = ReadHeight();
-            bool weightOK = ReadWeight();
-
-            return heightOK && weightOK;
         }
         private bool ReadHeight()
         {
@@ -165,6 +163,7 @@ namespace WinFormsApp2
             lblResultWeightCategory.Text = bmiCalc.BMIWeightCategory();
             grpResults.Text = $"Results for {bmiCalc.GetName()}";
             lblNormalWeight.Text = bmiCalc.CalculateNormalWeight();
+            lblNormalBMI.Text = "Normal BMI is between 18.50 and 24.90";
         }
     }
 }

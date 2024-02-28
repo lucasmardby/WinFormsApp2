@@ -76,18 +76,18 @@
         public string CalculateNormalWeight()
         {
             double factor = 1;
-            string measurement = "kg";
+            string measurementUnit = "kg";
 
             if (GetUnit() == UnitTypes.Imperial)
             {
                 factor = 703;
-                measurement = "lbs";
+                measurementUnit = "lbs";
             }
 
             double lowWeight = height * height / factor * 18.50;
             double highWeight = height * height / factor * 24.90;
 
-            string weightValues = $"Normal weight should be between {lowWeight:0.00} and {highWeight:0.00} {measurement}";
+            string weightValues = $"Normal weight should be between {lowWeight:0.00} and {highWeight:0.00} {measurementUnit}";
 
             return weightValues;
         }
