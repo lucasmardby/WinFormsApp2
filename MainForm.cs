@@ -3,6 +3,7 @@ namespace WinFormsApp2
     public partial class MainForm : Form
     {
         private BMICalculator bmiCalc = new();
+        private SavingCalculator savingCalc = new();
 
         public MainForm()
         {
@@ -11,6 +12,13 @@ namespace WinFormsApp2
         }
 
         private void InitializeGUI()
+        {
+            InitializeGUIBMI();
+            InitializeGUISavings();
+        }
+
+        #region BMICalculator
+        private void InitializeGUIBMI()
         {
             rbtnMetric.Checked = true;
             lblHeight.Text = "Height (cm)";
@@ -27,14 +35,13 @@ namespace WinFormsApp2
             lblNormalBMI.Text = string.Empty;
             lblNormalWeight.Text = string.Empty;
         }
-
         private void btnBMICalc_Click(object sender, EventArgs e)
         {
-            bool ok = ReadInput();
+            bool ok = ReadInputBMI();
 
             if (ok)
             {
-                DisplayResults();
+                DisplayResultsBMI();
             }
         }
         private void rbtnMetric_CheckedChanged(object sender, EventArgs e)
@@ -62,14 +69,14 @@ namespace WinFormsApp2
             }
         }
 
-        private bool ReadInput()
+        private bool ReadInputBMI()
         {
             ReadName();
             ReadUnitType();
 
             bool heightOK = ReadHeight();
             bool weightOK = ReadWeight();
-            
+
 
             return heightOK && weightOK;
         }
@@ -113,7 +120,7 @@ namespace WinFormsApp2
                     bmiCalc.SetHeight(height / 100.00);
                 }
                 else
-                { 
+                {
                     bmiCalc.SetHeight(height * 12.00 + heightInches);
                 }
             }
@@ -122,11 +129,11 @@ namespace WinFormsApp2
                 ok = false;
             }
 
-            if(!ok)
+            if (!ok)
             {
                 MessageBox.Show("Invalid height value!", "Error!");
             }
-                
+
             return ok;
         }
         private bool ReadWeight()
@@ -157,13 +164,188 @@ namespace WinFormsApp2
             return ok;
         }
 
-        private void DisplayResults()
+        private void DisplayResultsBMI()
         {
-            lblResultYourBMI.Text = bmiCalc.CalculateBMI().ToString("0.00");
+            lblResultYourBMI.Text = bmiCalc.CalculateBMI(bmiCalc.GetHeight(), bmiCalc.GetWeight()).ToString("0.00");
             lblResultWeightCategory.Text = bmiCalc.BMIWeightCategory();
             grpResults.Text = $"Results for {bmiCalc.GetName()}";
             lblNormalWeight.Text = bmiCalc.CalculateNormalWeight();
             lblNormalBMI.Text = "Normal BMI is between 18.50 and 24.90";
         }
+        #endregion
+
+        #region SavingCalculator
+        private void InitializeGUISavings()
+        {
+            txtInitialDeposit.Text = string.Empty;
+            txtMonthlyDeposit.Text = string.Empty;
+            txtPeriod.Text = string.Empty;
+            txtInterest.Text = string.Empty;
+            txtFees.Text = string.Empty;
+
+            txtInitialDeposit.TextAlign = HorizontalAlignment.Left;
+            txtMonthlyDeposit.TextAlign = HorizontalAlignment.Left;
+            txtPeriod.TextAlign = HorizontalAlignment.Left;
+            txtInterest.TextAlign = HorizontalAlignment.Left;
+            txtFees.TextAlign = HorizontalAlignment.Left;
+        }
+
+        private void btnSavingCalculate_Click(object sender, EventArgs e)
+        {
+            bool ok = ReadInputSavings();
+
+            if (ok)
+            {
+                DisplayResultsSavings();
+            }
+        }
+        private void btnSavingsClear_Click(object sender, EventArgs e)
+        {
+            InitializeGUISavings();
+        }
+        private bool ReadInputSavings()
+        {
+            bool initialOK = ReadInitialDeposit();
+            bool monthlyOK = ReadMonthlyDeposit();
+
+            ReadPeriod();
+            ReadInterestRate();
+            ReadFeeRate();
+
+            return initialOK && monthlyOK;
+        }
+
+
+        private bool ReadInitialDeposit()
+        {
+            bool ok = double.TryParse(txtInitialDeposit.Text.Trim(), out double deposit);
+
+            if (deposit >= 0)
+            {
+                savingCalc.SetInitialDeposit(deposit);
+            }
+            else
+            {
+                ok = false;
+            }
+
+            if (!ok)
+            {
+                MessageBox.Show("Invalid deposit value!", "Error!");
+            }
+
+            return ok;
+        }
+        private bool ReadMonthlyDeposit()
+        {
+            bool ok = double.TryParse(txtMonthlyDeposit.Text.Trim(), out double deposit);
+
+            if (deposit >= 0)
+            {
+                savingCalc.SetMonthlyDeposit(deposit);
+            }
+            else
+            {
+                ok = false;
+            }
+
+            if (!ok)
+            {
+                MessageBox.Show("Invalid deposit value!", "Error!");
+            }
+
+            return ok;
+        }
+        private bool ReadPeriod()
+        {
+            bool ok = double.TryParse(txtPeriod.Text.Trim(), out double years);
+
+            if (years >= 0)
+            {
+                savingCalc.SetPeriod(years);
+            }
+            else
+            {
+                ok = false;
+            }
+
+            if (!ok)
+            {
+                MessageBox.Show("Invalid period value!", "Error!");
+            }
+
+            return ok;
+        }
+        private bool ReadInterestRate()
+        {
+            bool ok = double.TryParse(txtInterest.Text.Trim(), out double rate);
+
+            if (rate >= 0)
+            {
+                savingCalc.SetInterest(rate);
+            }
+            else
+            {
+                ok = false;
+            }
+
+            if (!ok)
+            {
+                MessageBox.Show("Invalid interest rate!", "Error!");
+            }
+
+            return ok;
+        }
+        private bool ReadFeeRate()
+        {
+            bool ok = double.TryParse(txtFees.Text.Trim(), out double fee);
+
+            if (fee >= 0)
+            {
+                savingCalc.SetFees(fee);
+            }
+            else
+            {
+                ok = false;
+            }
+
+            if (!ok)
+            {
+                MessageBox.Show("Invalid fee rate!", "Error!");
+            }
+
+            return ok;
+        }
+
+        private void DisplayResultsSavings()
+        {
+            savingCalc.CalculateSavings();
+            DisplaySavingsInput();
+
+            lblAmountPaid.Text = savingCalc.GetAmountPaid().ToString("0.00");
+            lblAmountEarned.Text = savingCalc.GetTotalInterest().ToString("0.00");
+            lblFinalBalance.Text = savingCalc.GetBalance().ToString("0.00");
+            lblTotalFees.Text = savingCalc.GetTotalFees().ToString("0.00");
+        }
+        private void DisplaySavingsInput()
+        {
+            txtInitialDeposit.Text = savingCalc.GetInitialDeposit().ToString("0.00");
+            txtInitialDeposit.TextAlign = HorizontalAlignment.Right;
+
+            txtMonthlyDeposit.Text = savingCalc.GetMonthlyDeposit().ToString("0.00");
+            txtMonthlyDeposit.TextAlign = HorizontalAlignment.Right;
+
+            txtPeriod.Text = savingCalc.GetPeriod().ToString("0.00");
+            txtPeriod.TextAlign = HorizontalAlignment.Right;
+
+            txtInterest.Text = savingCalc.GetInterest().ToString("0.00");
+            txtInterest.TextAlign = HorizontalAlignment.Right;
+
+            txtFees.Text = savingCalc.GetFees().ToString("0.00");
+            txtFees.TextAlign = HorizontalAlignment.Right;
+        }
+        #endregion
+
+        
     }
 }

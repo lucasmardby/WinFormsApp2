@@ -48,14 +48,14 @@
             unit = value;
         }
 
-        public double CalculateBMI()
+        public double CalculateBMI(double height, double weight)
         {
             double amount = weight / (height * height);
             return amount;
         }
         public string BMIWeightCategory()
         {
-            double bmi = CalculateBMI();
+            double bmi = CalculateBMI(GetHeight(), GetWeight());
             string textOut = string.Empty;
 
             if (bmi < 18.5)

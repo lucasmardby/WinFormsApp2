@@ -50,26 +50,27 @@
             lblInches = new Label();
             grpBMICalculator = new GroupBox();
             grpSavingPlan = new GroupBox();
-            textBox1 = new TextBox();
-            label1 = new Label();
-            textBox2 = new TextBox();
-            label2 = new Label();
-            textBox3 = new TextBox();
-            label3 = new Label();
-            textBox4 = new TextBox();
-            label4 = new Label();
-            textBox5 = new TextBox();
+            txtFees = new TextBox();
             label5 = new Label();
-            button1 = new Button();
+            txtInterest = new TextBox();
+            label4 = new Label();
+            txtPeriod = new TextBox();
+            label3 = new Label();
+            txtMonthlyDeposit = new TextBox();
+            label2 = new Label();
+            txtInitialDeposit = new TextBox();
+            label1 = new Label();
+            btnSavingCalculate = new Button();
             groupBox2 = new GroupBox();
+            lblTotalFees = new Label();
+            lblFinalBalance = new Label();
+            lblAmountEarned = new Label();
+            lblAmountPaid = new Label();
             label6 = new Label();
             label7 = new Label();
-            label8 = new Label();
             label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            label12 = new Label();
-            label13 = new Label();
+            label8 = new Label();
+            btnSavingsClear = new Button();
             groupBox1.SuspendLayout();
             grpResults.SuspendLayout();
             grpBMICalculator.SuspendLayout();
@@ -284,15 +285,15 @@
             // 
             // grpSavingPlan
             // 
-            grpSavingPlan.Controls.Add(textBox5);
+            grpSavingPlan.Controls.Add(txtFees);
             grpSavingPlan.Controls.Add(label5);
-            grpSavingPlan.Controls.Add(textBox4);
+            grpSavingPlan.Controls.Add(txtInterest);
             grpSavingPlan.Controls.Add(label4);
-            grpSavingPlan.Controls.Add(textBox3);
+            grpSavingPlan.Controls.Add(txtPeriod);
             grpSavingPlan.Controls.Add(label3);
-            grpSavingPlan.Controls.Add(textBox2);
+            grpSavingPlan.Controls.Add(txtMonthlyDeposit);
             grpSavingPlan.Controls.Add(label2);
-            grpSavingPlan.Controls.Add(textBox1);
+            grpSavingPlan.Controls.Add(txtInitialDeposit);
             grpSavingPlan.Controls.Add(label1);
             grpSavingPlan.Location = new Point(566, 12);
             grpSavingPlan.Name = "grpSavingPlan";
@@ -301,76 +302,12 @@
             grpSavingPlan.TabStop = false;
             grpSavingPlan.Text = "Saving Plan";
             // 
-            // textBox1
+            // txtFees
             // 
-            textBox1.Location = new Point(158, 30);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(141, 23);
-            textBox1.TabIndex = 11;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(15, 33);
-            label1.Name = "label1";
-            label1.Size = new Size(79, 15);
-            label1.TabIndex = 12;
-            label1.Text = "Initial Deposit";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(158, 59);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(141, 23);
-            textBox2.TabIndex = 13;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(15, 62);
-            label2.Name = "label2";
-            label2.Size = new Size(95, 15);
-            label2.TabIndex = 14;
-            label2.Text = "Monthly Deposit";
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(158, 88);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(141, 23);
-            textBox3.TabIndex = 15;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(15, 91);
-            label3.Name = "label3";
-            label3.Size = new Size(79, 15);
-            label3.TabIndex = 16;
-            label3.Text = "Period (Years)";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(158, 117);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(141, 23);
-            textBox4.TabIndex = 17;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(15, 120);
-            label4.Name = "label4";
-            label4.Size = new Size(72, 15);
-            label4.TabIndex = 18;
-            label4.Text = "Interest in %";
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(158, 146);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(141, 23);
-            textBox5.TabIndex = 19;
+            txtFees.Location = new Point(158, 146);
+            txtFees.Name = "txtFees";
+            txtFees.Size = new Size(141, 23);
+            txtFees.TabIndex = 19;
             // 
             // label5
             // 
@@ -381,21 +318,86 @@
             label5.TabIndex = 20;
             label5.Text = "Fees in %";
             // 
-            // button1
+            // txtInterest
             // 
-            button1.Location = new Point(652, 204);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 27);
-            button1.TabIndex = 14;
-            button1.Text = "Calculate Savings";
-            button1.UseVisualStyleBackColor = true;
+            txtInterest.Location = new Point(158, 117);
+            txtInterest.Name = "txtInterest";
+            txtInterest.Size = new Size(141, 23);
+            txtInterest.TabIndex = 17;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(15, 120);
+            label4.Name = "label4";
+            label4.Size = new Size(72, 15);
+            label4.TabIndex = 18;
+            label4.Text = "Interest in %";
+            // 
+            // txtPeriod
+            // 
+            txtPeriod.Location = new Point(158, 88);
+            txtPeriod.Name = "txtPeriod";
+            txtPeriod.Size = new Size(141, 23);
+            txtPeriod.TabIndex = 15;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(15, 91);
+            label3.Name = "label3";
+            label3.Size = new Size(79, 15);
+            label3.TabIndex = 16;
+            label3.Text = "Period (Years)";
+            // 
+            // txtMonthlyDeposit
+            // 
+            txtMonthlyDeposit.Location = new Point(158, 59);
+            txtMonthlyDeposit.Name = "txtMonthlyDeposit";
+            txtMonthlyDeposit.Size = new Size(141, 23);
+            txtMonthlyDeposit.TabIndex = 13;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(15, 62);
+            label2.Name = "label2";
+            label2.Size = new Size(95, 15);
+            label2.TabIndex = 14;
+            label2.Text = "Monthly Deposit";
+            // 
+            // txtInitialDeposit
+            // 
+            txtInitialDeposit.Location = new Point(158, 30);
+            txtInitialDeposit.Name = "txtInitialDeposit";
+            txtInitialDeposit.Size = new Size(141, 23);
+            txtInitialDeposit.TabIndex = 11;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(15, 33);
+            label1.Name = "label1";
+            label1.Size = new Size(79, 15);
+            label1.TabIndex = 12;
+            label1.Text = "Initial Deposit";
+            // 
+            // btnSavingCalculate
+            // 
+            btnSavingCalculate.Location = new Point(581, 204);
+            btnSavingCalculate.Name = "btnSavingCalculate";
+            btnSavingCalculate.Size = new Size(183, 27);
+            btnSavingCalculate.TabIndex = 14;
+            btnSavingCalculate.Text = "Calculate Savings";
+            btnSavingCalculate.UseVisualStyleBackColor = true;
+            btnSavingCalculate.Click += btnSavingCalculate_Click;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(label13);
-            groupBox2.Controls.Add(label12);
-            groupBox2.Controls.Add(label11);
-            groupBox2.Controls.Add(label10);
+            groupBox2.Controls.Add(lblTotalFees);
+            groupBox2.Controls.Add(lblFinalBalance);
+            groupBox2.Controls.Add(lblAmountEarned);
+            groupBox2.Controls.Add(lblAmountPaid);
             groupBox2.Controls.Add(label6);
             groupBox2.Controls.Add(label7);
             groupBox2.Controls.Add(label9);
@@ -406,6 +408,42 @@
             groupBox2.TabIndex = 15;
             groupBox2.TabStop = false;
             groupBox2.Text = "Future Value";
+            // 
+            // lblTotalFees
+            // 
+            lblTotalFees.BorderStyle = BorderStyle.Fixed3D;
+            lblTotalFees.Location = new Point(158, 108);
+            lblTotalFees.Name = "lblTotalFees";
+            lblTotalFees.Size = new Size(141, 23);
+            lblTotalFees.TabIndex = 16;
+            lblTotalFees.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblFinalBalance
+            // 
+            lblFinalBalance.BorderStyle = BorderStyle.Fixed3D;
+            lblFinalBalance.Location = new Point(158, 81);
+            lblFinalBalance.Name = "lblFinalBalance";
+            lblFinalBalance.Size = new Size(141, 23);
+            lblFinalBalance.TabIndex = 16;
+            lblFinalBalance.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblAmountEarned
+            // 
+            lblAmountEarned.BorderStyle = BorderStyle.Fixed3D;
+            lblAmountEarned.Location = new Point(158, 50);
+            lblAmountEarned.Name = "lblAmountEarned";
+            lblAmountEarned.Size = new Size(141, 23);
+            lblAmountEarned.TabIndex = 25;
+            lblAmountEarned.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // lblAmountPaid
+            // 
+            lblAmountPaid.BorderStyle = BorderStyle.Fixed3D;
+            lblAmountPaid.Location = new Point(158, 21);
+            lblAmountPaid.Name = "lblAmountPaid";
+            lblAmountPaid.Size = new Size(141, 23);
+            lblAmountPaid.TabIndex = 6;
+            lblAmountPaid.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label6
             // 
@@ -425,15 +463,6 @@
             label7.TabIndex = 23;
             label7.Text = "Final Balance";
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(15, 58);
-            label8.Name = "label8";
-            label8.Size = new Size(90, 15);
-            label8.TabIndex = 22;
-            label8.Text = "Amount Earned";
-            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -443,49 +472,33 @@
             label9.TabIndex = 21;
             label9.Text = "Amount Paid";
             // 
-            // label10
+            // label8
             // 
-            label10.BorderStyle = BorderStyle.Fixed3D;
-            label10.Location = new Point(158, 21);
-            label10.Name = "label10";
-            label10.Size = new Size(141, 23);
-            label10.TabIndex = 6;
-            label10.TextAlign = ContentAlignment.MiddleRight;
+            label8.AutoSize = true;
+            label8.Location = new Point(15, 58);
+            label8.Name = "label8";
+            label8.Size = new Size(90, 15);
+            label8.TabIndex = 22;
+            label8.Text = "Amount Earned";
             // 
-            // label11
+            // btnSavingsClear
             // 
-            label11.BorderStyle = BorderStyle.Fixed3D;
-            label11.Location = new Point(158, 50);
-            label11.Name = "label11";
-            label11.Size = new Size(141, 23);
-            label11.TabIndex = 25;
-            label11.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label12
-            // 
-            label12.BorderStyle = BorderStyle.Fixed3D;
-            label12.Location = new Point(158, 81);
-            label12.Name = "label12";
-            label12.Size = new Size(141, 23);
-            label12.TabIndex = 16;
-            label12.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label13
-            // 
-            label13.BorderStyle = BorderStyle.Fixed3D;
-            label13.Location = new Point(158, 108);
-            label13.Name = "label13";
-            label13.Size = new Size(141, 23);
-            label13.TabIndex = 16;
-            label13.TextAlign = ContentAlignment.MiddleRight;
+            btnSavingsClear.Location = new Point(790, 204);
+            btnSavingsClear.Name = "btnSavingsClear";
+            btnSavingsClear.Size = new Size(75, 27);
+            btnSavingsClear.TabIndex = 16;
+            btnSavingsClear.Text = "Clear";
+            btnSavingsClear.UseVisualStyleBackColor = true;
+            btnSavingsClear.Click += btnSavingsClear_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(925, 633);
+            Controls.Add(btnSavingsClear);
             Controls.Add(groupBox2);
-            Controls.Add(button1);
+            Controls.Add(btnSavingCalculate);
             Controls.Add(grpSavingPlan);
             Controls.Add(grpBMICalculator);
             Controls.Add(lblInches);
@@ -535,25 +548,26 @@
         private Label lblInches;
         private GroupBox grpBMICalculator;
         private GroupBox grpSavingPlan;
-        private TextBox textBox5;
+        private TextBox txtFees;
         private Label label5;
-        private TextBox textBox4;
+        private TextBox txtInterest;
         private Label label4;
-        private TextBox textBox3;
+        private TextBox txtPeriod;
         private Label label3;
-        private TextBox textBox2;
+        private TextBox txtMonthlyDeposit;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox txtInitialDeposit;
         private Label label1;
-        private Button button1;
+        private Button btnSavingCalculate;
         private GroupBox groupBox2;
         private Label label6;
         private Label label7;
         private Label label9;
         private Label label8;
-        private Label label13;
-        private Label label12;
-        private Label label11;
-        private Label label10;
+        private Label lblTotalFees;
+        private Label lblFinalBalance;
+        private Label lblAmountEarned;
+        private Label lblAmountPaid;
+        private Button btnSavingsClear;
     }
 }
