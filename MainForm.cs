@@ -4,6 +4,7 @@ namespace WinFormsApp2
     {
         private BMICalculator bmiCalc = new();
         private SavingCalculator savingCalc = new();
+        private BMRCalculator bmrCalc = new();
 
         public MainForm()
         {
@@ -15,6 +16,7 @@ namespace WinFormsApp2
         {
             InitializeGUIBMI();
             InitializeGUISavings();
+            InitializeGUIBMR();
         }
 
         #region BMICalculator
@@ -183,6 +185,11 @@ namespace WinFormsApp2
             txtInterest.Text = string.Empty;
             txtFees.Text = string.Empty;
 
+            lblAmountPaid.Text = string.Empty;
+            lblAmountEarned.Text = string.Empty;
+            lblFinalBalance.Text = string.Empty;
+            lblTotalFees.Text = string.Empty;
+
             txtInitialDeposit.TextAlign = HorizontalAlignment.Left;
             txtMonthlyDeposit.TextAlign = HorizontalAlignment.Left;
             txtPeriod.TextAlign = HorizontalAlignment.Left;
@@ -346,6 +353,67 @@ namespace WinFormsApp2
         }
         #endregion
 
-        
+
+        #region BMRCalculator
+
+        private void InitializeGUIBMR()
+        {
+
+        }
+
+        private void ReadAge()
+        {
+            bool ok = int.TryParse(txtAge.Text.Trim(), out int age);
+
+            if (age > 0)
+            {
+                bmrCalc.SetAge(age);
+            }
+            else
+            {
+                ok = false;
+            }
+
+            if (!ok)
+            {
+                MessageBox.Show("Invalid age value!", "Error!");
+            }
+        }
+        private void ReadGender()
+        { 
+            if (rbtnMale.Checked)
+            {
+                bmrCalc.SetActivityLevel(ActivityLevels.Sedentary);
+            }
+            else if (rbtnFemale.Checked)
+            {
+                bmrCalc.SetActivityLevel(ActivityLevels.Sedentary);
+            }
+        }
+        private void ReadActivityLevel()
+        {
+            if (rbtnSedentary.Checked)
+            {
+                bmrCalc.SetActivityLevel(ActivityLevels.Sedentary);
+            }
+            else if (rbtnLightlyActive.Checked)
+            {
+                bmrCalc.SetActivityLevel(ActivityLevels.LightlyActive);
+            }
+            else if (rbtnModeratelyActive.Checked)
+            {
+                bmrCalc.SetActivityLevel(ActivityLevels.ModeratelyActive);
+            }
+            else if (rbtnVeryActive.Checked)
+            {
+                bmrCalc.SetActivityLevel(ActivityLevels.VeryActive);
+            }
+            else if (rbtnExtraActive.Checked)
+            {
+                bmrCalc.SetActivityLevel(ActivityLevels.ExtraActive);
+            }
+        }
+
+        #endregion
     }
 }

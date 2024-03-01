@@ -71,11 +71,28 @@
             label9 = new Label();
             label8 = new Label();
             btnSavingsClear = new Button();
+            grpBMRCalculator = new GroupBox();
+            btnCalculateBMR = new Button();
+            listboxBMR = new ListBox();
+            groupBox4 = new GroupBox();
+            rbtnExtraActive = new RadioButton();
+            rbtnVeryActive = new RadioButton();
+            rbtnModeratelyActive = new RadioButton();
+            rbtnLightlyActive = new RadioButton();
+            rbtnSedentary = new RadioButton();
+            txtAge = new TextBox();
+            groupBox3 = new GroupBox();
+            rbtnMale = new RadioButton();
+            rbtnFemale = new RadioButton();
+            label10 = new Label();
             groupBox1.SuspendLayout();
             grpResults.SuspendLayout();
             grpBMICalculator.SuspendLayout();
             grpSavingPlan.SuspendLayout();
             groupBox2.SuspendLayout();
+            grpBMRCalculator.SuspendLayout();
+            groupBox4.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // txtName
@@ -128,11 +145,12 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.FromArgb(192, 192, 255);
             groupBox1.Controls.Add(rbtnUsUnit);
             groupBox1.Controls.Add(rbtnMetric);
             groupBox1.Location = new Point(395, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(150, 108);
+            groupBox1.Size = new Size(150, 153);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
             groupBox1.Text = "Unit";
@@ -142,10 +160,10 @@
             rbtnUsUnit.AutoSize = true;
             rbtnUsUnit.Location = new Point(14, 48);
             rbtnUsUnit.Name = "rbtnUsUnit";
-            rbtnUsUnit.Size = new Size(118, 19);
+            rbtnUsUnit.Size = new Size(122, 19);
             rbtnUsUnit.TabIndex = 1;
             rbtnUsUnit.TabStop = true;
-            rbtnUsUnit.Text = "US Unit (foot, lbs)";
+            rbtnUsUnit.Text = "Imperial (foot, lbs)";
             rbtnUsUnit.UseVisualStyleBackColor = true;
             rbtnUsUnit.CheckedChanged += rbtnUsUnit_CheckedChanged;
             // 
@@ -154,41 +172,43 @@
             rbtnMetric.AutoSize = true;
             rbtnMetric.Location = new Point(14, 23);
             rbtnMetric.Name = "rbtnMetric";
-            rbtnMetric.Size = new Size(131, 19);
-            rbtnMetric.TabIndex = 0;
+            rbtnMetric.Size = new Size(106, 19);
+            rbtnMetric.TabIndex = 1;
             rbtnMetric.TabStop = true;
-            rbtnMetric.Text = "Metric Unit (cm, kg)";
+            rbtnMetric.Text = "Metric (cm, kg)";
             rbtnMetric.UseVisualStyleBackColor = true;
             rbtnMetric.CheckedChanged += rbtnMetric_CheckedChanged;
             // 
             // btnBMICalculate
             // 
-            btnBMICalculate.Location = new Point(395, 126);
+            btnBMICalculate.BackColor = Color.FromArgb(192, 192, 255);
+            btnBMICalculate.Location = new Point(221, 172);
             btnBMICalculate.Name = "btnBMICalculate";
             btnBMICalculate.Size = new Size(150, 27);
             btnBMICalculate.TabIndex = 7;
             btnBMICalculate.Text = "Calculate BMI";
-            btnBMICalculate.UseVisualStyleBackColor = true;
+            btnBMICalculate.UseVisualStyleBackColor = false;
             btnBMICalculate.Click += btnBMICalc_Click;
             // 
             // grpResults
             // 
+            grpResults.BackColor = Color.FromArgb(192, 192, 255);
             grpResults.Controls.Add(lblNormalWeight);
             grpResults.Controls.Add(lblNormalBMI);
             grpResults.Controls.Add(lblResultWeightCategory);
             grpResults.Controls.Add(lblResultYourBMI);
             grpResults.Controls.Add(lblWeightCategory);
             grpResults.Controls.Add(lblYourBMI);
-            grpResults.Location = new Point(25, 159);
+            grpResults.Location = new Point(25, 204);
             grpResults.Name = "grpResults";
-            grpResults.Size = new Size(520, 182);
+            grpResults.Size = new Size(520, 184);
             grpResults.TabIndex = 8;
             grpResults.TabStop = false;
             grpResults.Text = "Results";
             // 
             // lblNormalWeight
             // 
-            lblNormalWeight.ForeColor = Color.Green;
+            lblNormalWeight.ForeColor = Color.DarkViolet;
             lblNormalWeight.Location = new Point(28, 141);
             lblNormalWeight.Name = "lblNormalWeight";
             lblNormalWeight.Size = new Size(464, 23);
@@ -246,7 +266,7 @@
             txtUSInches.Location = new Point(201, 73);
             txtUSInches.Name = "txtUSInches";
             txtUSInches.Size = new Size(51, 23);
-            txtUSInches.TabIndex = 9;
+            txtUSInches.TabIndex = 3;
             // 
             // lblFeet
             // 
@@ -268,6 +288,7 @@
             // 
             // grpBMICalculator
             // 
+            grpBMICalculator.BackColor = Color.FromArgb(192, 192, 255);
             grpBMICalculator.Controls.Add(lblName);
             grpBMICalculator.Controls.Add(txtName);
             grpBMICalculator.Controls.Add(lblFeet);
@@ -278,13 +299,14 @@
             grpBMICalculator.Controls.Add(lblWeight);
             grpBMICalculator.Location = new Point(25, 12);
             grpBMICalculator.Name = "grpBMICalculator";
-            grpBMICalculator.Size = new Size(364, 141);
+            grpBMICalculator.Size = new Size(364, 153);
             grpBMICalculator.TabIndex = 12;
             grpBMICalculator.TabStop = false;
             grpBMICalculator.Text = "BMI Calculator";
             // 
             // grpSavingPlan
             // 
+            grpSavingPlan.BackColor = Color.FromArgb(255, 255, 192);
             grpSavingPlan.Controls.Add(txtFees);
             grpSavingPlan.Controls.Add(label5);
             grpSavingPlan.Controls.Add(txtInterest);
@@ -300,14 +322,14 @@
             grpSavingPlan.Size = new Size(328, 186);
             grpSavingPlan.TabIndex = 13;
             grpSavingPlan.TabStop = false;
-            grpSavingPlan.Text = "Saving Plan";
+            grpSavingPlan.Text = "Saving Plan Calculator";
             // 
             // txtFees
             // 
             txtFees.Location = new Point(158, 146);
             txtFees.Name = "txtFees";
             txtFees.Size = new Size(141, 23);
-            txtFees.TabIndex = 19;
+            txtFees.TabIndex = 12;
             // 
             // label5
             // 
@@ -323,7 +345,7 @@
             txtInterest.Location = new Point(158, 117);
             txtInterest.Name = "txtInterest";
             txtInterest.Size = new Size(141, 23);
-            txtInterest.TabIndex = 17;
+            txtInterest.TabIndex = 11;
             // 
             // label4
             // 
@@ -339,7 +361,7 @@
             txtPeriod.Location = new Point(158, 88);
             txtPeriod.Name = "txtPeriod";
             txtPeriod.Size = new Size(141, 23);
-            txtPeriod.TabIndex = 15;
+            txtPeriod.TabIndex = 10;
             // 
             // label3
             // 
@@ -355,7 +377,7 @@
             txtMonthlyDeposit.Location = new Point(158, 59);
             txtMonthlyDeposit.Name = "txtMonthlyDeposit";
             txtMonthlyDeposit.Size = new Size(141, 23);
-            txtMonthlyDeposit.TabIndex = 13;
+            txtMonthlyDeposit.TabIndex = 9;
             // 
             // label2
             // 
@@ -371,7 +393,7 @@
             txtInitialDeposit.Location = new Point(158, 30);
             txtInitialDeposit.Name = "txtInitialDeposit";
             txtInitialDeposit.Size = new Size(141, 23);
-            txtInitialDeposit.TabIndex = 11;
+            txtInitialDeposit.TabIndex = 8;
             // 
             // label1
             // 
@@ -384,16 +406,18 @@
             // 
             // btnSavingCalculate
             // 
+            btnSavingCalculate.BackColor = Color.FromArgb(255, 255, 192);
             btnSavingCalculate.Location = new Point(581, 204);
             btnSavingCalculate.Name = "btnSavingCalculate";
             btnSavingCalculate.Size = new Size(183, 27);
-            btnSavingCalculate.TabIndex = 14;
+            btnSavingCalculate.TabIndex = 13;
             btnSavingCalculate.Text = "Calculate Savings";
-            btnSavingCalculate.UseVisualStyleBackColor = true;
+            btnSavingCalculate.UseVisualStyleBackColor = false;
             btnSavingCalculate.Click += btnSavingCalculate_Click;
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = Color.FromArgb(255, 255, 192);
             groupBox2.Controls.Add(lblTotalFees);
             groupBox2.Controls.Add(lblFinalBalance);
             groupBox2.Controls.Add(lblAmountEarned);
@@ -483,19 +507,174 @@
             // 
             // btnSavingsClear
             // 
+            btnSavingsClear.BackColor = Color.FromArgb(255, 255, 192);
             btnSavingsClear.Location = new Point(790, 204);
             btnSavingsClear.Name = "btnSavingsClear";
             btnSavingsClear.Size = new Size(75, 27);
-            btnSavingsClear.TabIndex = 16;
+            btnSavingsClear.TabIndex = 14;
             btnSavingsClear.Text = "Clear";
-            btnSavingsClear.UseVisualStyleBackColor = true;
+            btnSavingsClear.UseVisualStyleBackColor = false;
             btnSavingsClear.Click += btnSavingsClear_Click;
+            // 
+            // grpBMRCalculator
+            // 
+            grpBMRCalculator.BackColor = Color.FromArgb(192, 255, 192);
+            grpBMRCalculator.Controls.Add(btnCalculateBMR);
+            grpBMRCalculator.Controls.Add(listboxBMR);
+            grpBMRCalculator.Controls.Add(groupBox4);
+            grpBMRCalculator.Controls.Add(txtAge);
+            grpBMRCalculator.Controls.Add(groupBox3);
+            grpBMRCalculator.Controls.Add(label10);
+            grpBMRCalculator.Location = new Point(25, 394);
+            grpBMRCalculator.Name = "grpBMRCalculator";
+            grpBMRCalculator.Size = new Size(869, 206);
+            grpBMRCalculator.TabIndex = 17;
+            grpBMRCalculator.TabStop = false;
+            grpBMRCalculator.Text = "BMR Calculator";
+            // 
+            // btnCalculateBMR
+            // 
+            btnCalculateBMR.BackColor = Color.FromArgb(192, 255, 192);
+            btnCalculateBMR.Location = new Point(6, 157);
+            btnCalculateBMR.Name = "btnCalculateBMR";
+            btnCalculateBMR.Size = new Size(150, 27);
+            btnCalculateBMR.TabIndex = 18;
+            btnCalculateBMR.Text = "Calculate BMR";
+            btnCalculateBMR.UseVisualStyleBackColor = false;
+            // 
+            // listboxBMR
+            // 
+            listboxBMR.FormattingEnabled = true;
+            listboxBMR.ItemHeight = 15;
+            listboxBMR.Location = new Point(372, 30);
+            listboxBMR.Name = "listboxBMR";
+            listboxBMR.Size = new Size(468, 154);
+            listboxBMR.TabIndex = 14;
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(rbtnExtraActive);
+            groupBox4.Controls.Add(rbtnVeryActive);
+            groupBox4.Controls.Add(rbtnModeratelyActive);
+            groupBox4.Controls.Add(rbtnLightlyActive);
+            groupBox4.Controls.Add(rbtnSedentary);
+            groupBox4.Location = new Point(175, 22);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(177, 162);
+            groupBox4.TabIndex = 13;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Weekly Activity Level";
+            // 
+            // rbtnExtraActive
+            // 
+            rbtnExtraActive.AutoSize = true;
+            rbtnExtraActive.Location = new Point(9, 120);
+            rbtnExtraActive.Name = "rbtnExtraActive";
+            rbtnExtraActive.Size = new Size(85, 19);
+            rbtnExtraActive.TabIndex = 4;
+            rbtnExtraActive.TabStop = true;
+            rbtnExtraActive.Text = "Extra active";
+            rbtnExtraActive.UseVisualStyleBackColor = true;
+            // 
+            // rbtnVeryActive
+            // 
+            rbtnVeryActive.AutoSize = true;
+            rbtnVeryActive.Location = new Point(9, 95);
+            rbtnVeryActive.Name = "rbtnVeryActive";
+            rbtnVeryActive.Size = new Size(81, 19);
+            rbtnVeryActive.TabIndex = 3;
+            rbtnVeryActive.TabStop = true;
+            rbtnVeryActive.Text = "Very active";
+            rbtnVeryActive.UseVisualStyleBackColor = true;
+            // 
+            // rbtnModeratelyActive
+            // 
+            rbtnModeratelyActive.AutoSize = true;
+            rbtnModeratelyActive.Location = new Point(9, 72);
+            rbtnModeratelyActive.Name = "rbtnModeratelyActive";
+            rbtnModeratelyActive.Size = new Size(119, 19);
+            rbtnModeratelyActive.TabIndex = 2;
+            rbtnModeratelyActive.TabStop = true;
+            rbtnModeratelyActive.Text = "Moderately active";
+            rbtnModeratelyActive.UseVisualStyleBackColor = true;
+            // 
+            // rbtnLightlyActive
+            // 
+            rbtnLightlyActive.AutoSize = true;
+            rbtnLightlyActive.Location = new Point(9, 47);
+            rbtnLightlyActive.Name = "rbtnLightlyActive";
+            rbtnLightlyActive.Size = new Size(95, 19);
+            rbtnLightlyActive.TabIndex = 1;
+            rbtnLightlyActive.TabStop = true;
+            rbtnLightlyActive.Text = "Lightly active";
+            rbtnLightlyActive.UseVisualStyleBackColor = true;
+            // 
+            // rbtnSedentary
+            // 
+            rbtnSedentary.AutoSize = true;
+            rbtnSedentary.Location = new Point(9, 22);
+            rbtnSedentary.Name = "rbtnSedentary";
+            rbtnSedentary.Size = new Size(77, 19);
+            rbtnSedentary.TabIndex = 0;
+            rbtnSedentary.TabStop = true;
+            rbtnSedentary.Text = "Sedentary";
+            rbtnSedentary.UseVisualStyleBackColor = true;
+            // 
+            // txtAge
+            // 
+            txtAge.Location = new Point(97, 121);
+            txtAge.Name = "txtAge";
+            txtAge.Size = new Size(51, 23);
+            txtAge.TabIndex = 11;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(rbtnMale);
+            groupBox3.Controls.Add(rbtnFemale);
+            groupBox3.Location = new Point(6, 22);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(150, 86);
+            groupBox3.TabIndex = 7;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Gender";
+            // 
+            // rbtnMale
+            // 
+            rbtnMale.AutoSize = true;
+            rbtnMale.Location = new Point(14, 48);
+            rbtnMale.Name = "rbtnMale";
+            rbtnMale.Size = new Size(51, 19);
+            rbtnMale.TabIndex = 1;
+            rbtnMale.TabStop = true;
+            rbtnMale.Text = "Male";
+            rbtnMale.UseVisualStyleBackColor = true;
+            // 
+            // rbtnFemale
+            // 
+            rbtnFemale.AutoSize = true;
+            rbtnFemale.Location = new Point(14, 23);
+            rbtnFemale.Name = "rbtnFemale";
+            rbtnFemale.Size = new Size(63, 19);
+            rbtnFemale.TabIndex = 1;
+            rbtnFemale.TabStop = true;
+            rbtnFemale.Text = "Female";
+            rbtnFemale.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(15, 124);
+            label10.Name = "label10";
+            label10.Size = new Size(28, 15);
+            label10.TabIndex = 12;
+            label10.Text = "Age";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(925, 633);
+            ClientSize = new Size(916, 621);
+            Controls.Add(grpBMRCalculator);
             Controls.Add(btnSavingsClear);
             Controls.Add(groupBox2);
             Controls.Add(btnSavingCalculate);
@@ -520,6 +699,12 @@
             grpSavingPlan.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            grpBMRCalculator.ResumeLayout(false);
+            grpBMRCalculator.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -569,5 +754,19 @@
         private Label lblAmountEarned;
         private Label lblAmountPaid;
         private Button btnSavingsClear;
+        private GroupBox grpBMRCalculator;
+        private GroupBox groupBox4;
+        private RadioButton rbtnSedentary;
+        private TextBox txtAge;
+        private GroupBox groupBox3;
+        private RadioButton rbtnMale;
+        private RadioButton rbtnFemale;
+        private Label label10;
+        private ListBox listboxBMR;
+        private RadioButton rbtnExtraActive;
+        private RadioButton rbtnVeryActive;
+        private RadioButton rbtnModeratelyActive;
+        private RadioButton rbtnLightlyActive;
+        private Button btnCalculateBMR;
     }
 }
