@@ -5,9 +5,12 @@ namespace WinFormsApp2
     internal class BMRCalculator
     {
         private int age = 0;
+        private double height = 0;
+        private double weight = 0;
         private BMRGender gender;
         private ActivityLevels activityLevels;
 
+        #region Getters and Setters
         public int GetAge()
         {
             return age;
@@ -17,6 +20,28 @@ namespace WinFormsApp2
             if(value >= 0)
             { 
                 age = value;
+            }
+        }
+        public double GetHeight()
+        {
+            return height;
+        }
+        public void SetHeight(double value)
+        {
+            if (value >= 0)
+            {
+                height = value;
+            }
+        }
+        public double GetWeight()
+        {
+            return weight;
+        }
+        public void SetWeight(double value)
+        {
+            if (value >= 0)
+            {
+                weight = value;
             }
         }
         public BMRGender GetGender()
@@ -35,16 +60,13 @@ namespace WinFormsApp2
         {
             activityLevels = value;
         }
+        #endregion
 
+        #region Calculators
         public double CalculateBMR()
         {
             double BMR = 0.00;
             int genderFactor = 0;
-
-            double height = 0.00;
-            double weight = 0.00;
-            //replace with user-input height and weight (metric)
-            // --take from BMI UI, or add new textboxes for cm and kg?
 
             BMR = 10 * weight + 6.25 * height - 5 * age;
 
@@ -60,9 +82,11 @@ namespace WinFormsApp2
             return BMR;
 
         }
-        public void CalculateMaintainWeightBMRs() 
+        public double CalculateMaintainWeightBMRs() 
         {
-            var maintainWeightBMRs = CalculateBMR() * CalculateActivityFactor();
+            double maintainWeightBMRs = CalculateBMR() * CalculateActivityFactor();
+
+            return maintainWeightBMRs;
 
         }
         private double CalculateActivityFactor()
@@ -88,8 +112,8 @@ namespace WinFormsApp2
                     return factor;
                 default: 
                     return factor;
-
             }
         }
+        #endregion
     }
 }

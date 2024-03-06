@@ -13,6 +13,7 @@
         private double totalInterest = 0;
         private double totalFees = 0;
 
+        #region Getters and Setters
         public double GetInitialDeposit()
         { 
             return initialDeposit;
@@ -72,7 +73,9 @@
                 fees = value;
             }
         }
+        #endregion
 
+        #region Calculate and Display Results
         public double GetBalance()
         {
             return finalBalance;
@@ -111,5 +114,6 @@
                 totalFees += newFees;
             }
         }
+        #endregion
     }
 }

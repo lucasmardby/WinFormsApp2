@@ -7,6 +7,7 @@
         private double weight = 0;
         private UnitTypes unit;
 
+        #region Getters and Setters
         public string GetName()
         { 
             return name;
@@ -47,7 +48,9 @@
         {
             unit = value;
         }
+        #endregion
 
+        #region Calculators
         public double CalculateBMI(double height, double weight)
         {
             double amount = weight / (height * height);
@@ -91,5 +94,6 @@
 
             return weightValues;
         }
+        #endregion
     }
 }
