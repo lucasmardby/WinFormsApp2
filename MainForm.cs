@@ -109,6 +109,9 @@ namespace WinFormsApp2
         #region BMICalculator
 
         #region BMI Form
+        /// <summary>
+        /// Initialize the BMI GUI. Setting values, clearing textboxes, and hiding the US units until used.
+        /// </summary>
         private void InitializeGUIBMI()
         {
             rbtnMetric.Checked = true;
@@ -126,6 +129,12 @@ namespace WinFormsApp2
             lblNormalBMI.Text = string.Empty;
             lblNormalWeight.Text = string.Empty;
         }
+
+        /// <summary>
+        /// BMI button, reading user-input values and displaying BMI results.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBMICalc_Click(object sender, EventArgs e)
         {
             bool ok = ReadInputBMI();
@@ -135,6 +144,12 @@ namespace WinFormsApp2
                 DisplayResultsBMI();
             }
         }
+
+        /// <summary>
+        /// Metric Radio Button, changing the units on the GUI and the UnitType to Metric.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnMetric_CheckedChanged(object sender, EventArgs e)
         {
             if (rbtnMetric.Checked)
@@ -147,6 +162,12 @@ namespace WinFormsApp2
                 txtBMIUSInches.Visible = false;
             }
         }
+
+        /// <summary>
+        /// Imperial Radio Button, changing the units on the GUI and the UnitType to Imperial.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void rbtnUsUnit_CheckedChanged(object sender, EventArgs e)
         {
             if (rbtnUsUnit.Checked)
@@ -162,6 +183,10 @@ namespace WinFormsApp2
         #endregion
 
         #region Readers
+        /// <summary>
+        /// Reads all BMI input, and sets all BMI variables
+        /// </summary>
+        /// <returns>True if height and weight are correct values</returns>
         private bool ReadInputBMI()
         {
             ReadName();
@@ -173,6 +198,11 @@ namespace WinFormsApp2
 
             return heightOK && weightOK;
         }
+
+        /// <summary>
+        /// Reads user-input Name from textbox, and uses SetName to set its variable.
+        /// Also uses StringExtentionMethod 'IsNotNullOrEmpty' instead, to check string validity
+        /// </summary>
         private void ReadName()
         {
             txtBMIName.Text = txtBMIName.Text.Trim();
@@ -185,6 +215,10 @@ namespace WinFormsApp2
                 bmiCalc.SetName("No Name");
             }
         }
+
+        /// <summary>
+        /// Reads which Unit radio button is checked, and sets the UnitType
+        /// </summary>
         private void ReadUnitType()
         {
             if (rbtnMetric.Checked)
@@ -198,6 +232,9 @@ namespace WinFormsApp2
         }
         #endregion
 
+        /// <summary>
+        /// Display BMI results: BMI, Weight Category, and texts for Name and NormalWeight
+        /// </summary>
         private void DisplayResultsBMI()
         {
             lblResultYourBMI.Text = bmiCalc.CalculateBMI(bmiCalc.GetHeight(), bmiCalc.GetWeight()).ToString("0.00");
@@ -211,6 +248,9 @@ namespace WinFormsApp2
         #region SavingCalculator
 
         #region Savings Form
+        /// <summary>
+        /// Initialize the Savings GUI. Clearing textboxes and lables, and aligns the text.
+        /// </summary>
         private void InitializeGUISavings()
         {
             txtInitialDeposit.Text = string.Empty;
@@ -230,6 +270,12 @@ namespace WinFormsApp2
             txtInterest.TextAlign = HorizontalAlignment.Left;
             txtFees.TextAlign = HorizontalAlignment.Left;
         }
+
+        /// <summary>
+        /// Savings button, reading user-input values and displaying Savings results.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSavingCalculate_Click(object sender, EventArgs e)
         {
             bool ok = ReadInputSavings();
@@ -239,6 +285,12 @@ namespace WinFormsApp2
                 DisplayResultsSavings();
             }
         }
+
+        /// <summary>
+        /// Clear button, which clears all text input into the Savings calculator
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSavingsClear_Click(object sender, EventArgs e)
         {
             InitializeGUISavings();
@@ -246,6 +298,10 @@ namespace WinFormsApp2
         #endregion
 
         #region Readers
+        /// <summary>
+        /// Reads all Savings input, and sets all Savings variables
+        /// </summary>
+        /// <returns>True if initital and monthly deposits are correct values</returns>
         private bool ReadInputSavings()
         {
             bool initialOK = ReadInitialDeposit();
@@ -257,6 +313,11 @@ namespace WinFormsApp2
 
             return initialOK && monthlyOK;
         }
+
+        /// <summary>
+        /// Reads user input text from Initial Deposit textbox
+        /// </summary>
+        /// <returns>True if a correct value is input, false if not</returns>
         private bool ReadInitialDeposit()
         {
             bool ok = double.TryParse(txtInitialDeposit.Text.Trim(), out double deposit);
@@ -277,6 +338,11 @@ namespace WinFormsApp2
 
             return ok;
         }
+
+        /// <summary>
+        /// Reads user input text from Monthly Deposit textbox
+        /// </summary>
+        /// <returns>True if a correct value is input, false if not</returns>
         private bool ReadMonthlyDeposit()
         {
             bool ok = double.TryParse(txtMonthlyDeposit.Text.Trim(), out double deposit);
@@ -297,6 +363,11 @@ namespace WinFormsApp2
 
             return ok;
         }
+
+        /// <summary>
+        /// Reads user input text from period textbox
+        /// </summary>
+        /// <returns>True if a correct value is input, false if not</returns>
         private bool ReadPeriod()
         {
             bool ok = double.TryParse(txtPeriod.Text.Trim(), out double years);
@@ -317,6 +388,11 @@ namespace WinFormsApp2
 
             return ok;
         }
+
+        /// <summary>
+        /// Reads user input text from interest rate textbox
+        /// </summary>
+        /// <returns>True if a correct value is input, false if not</returns>
         private bool ReadInterestRate()
         {
             bool ok = double.TryParse(txtInterest.Text.Trim(), out double rate);
@@ -337,6 +413,11 @@ namespace WinFormsApp2
 
             return ok;
         }
+
+        /// <summary>
+        /// Reads user input text from fee rate textbox
+        /// </summary>
+        /// <returns>True if a correct value is input, false if not</returns>
         private bool ReadFeeRate()
         {
             bool ok = double.TryParse(txtFees.Text.Trim(), out double fee);
@@ -360,6 +441,9 @@ namespace WinFormsApp2
         #endregion
 
         #region Display
+        /// <summary>
+        /// Calculates input and displays savings to the corresponding labels
+        /// </summary>
         private void DisplayResultsSavings()
         {
             savingCalc.CalculateSavings();
@@ -370,6 +454,10 @@ namespace WinFormsApp2
             lblFinalBalance.Text = savingCalc.GetBalance().ToString("0.00");
             lblTotalFees.Text = savingCalc.GetTotalFees().ToString("0.00");
         }
+
+        /// <summary>
+        /// Formats and aligns the user input values in their textboxes
+        /// </summary>
         private void DisplaySavingsInput()
         {
             txtInitialDeposit.Text = savingCalc.GetInitialDeposit().ToString("0.00");
@@ -394,6 +482,9 @@ namespace WinFormsApp2
         #region BMRCalculator
 
         #region BMR Form
+        /// <summary>
+        /// Initialize the BMR GUI. Setting values, clearing textboxes and the listbox.
+        /// </summary>
         private void InitializeGUIBMR()
         {
             txtBMRAge.Text = string.Empty;
@@ -405,6 +496,13 @@ namespace WinFormsApp2
 
             listboxBMR.Items.Clear();
         }
+
+        /// <summary>
+        /// BMR button, sets the UnitType to Metric for the BMR calculation,
+        /// and reads user-input values to display BMR results
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCalculateBMR_Click(object sender, EventArgs e)
         {
             bmiCalc.SetUnit(UnitTypes.Metric);
@@ -483,6 +581,7 @@ namespace WinFormsApp2
             }
         }
         #endregion
+
         private void DisplayResultsBMR()
         { 
             double maintainWeightBMR = bmrCalc.CalculateMaintainWeightBMRs();
