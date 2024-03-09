@@ -1,7 +1,8 @@
 namespace WinFormsApp2
 {
     /// <summary>
-    /// MainForm class which takes care of the WinForm. Instance variables at the top for each of the classes.
+    /// MainForm class which takes care of the WinForm. 
+    /// Instance variables at the top for each of the classes.
     /// </summary>
     public partial class MainForm : Form
     {
@@ -27,6 +28,7 @@ namespace WinFormsApp2
             InitializeGUISavings();
             InitializeGUIBMR();
         }
+
         #region Height and Weight, BMI and BMR
         /// <summary>
         /// Reads user input height for the BMI and BMR calculations.
@@ -184,7 +186,7 @@ namespace WinFormsApp2
 
         #region Readers
         /// <summary>
-        /// Reads all BMI input, and sets all BMI variables
+        /// Reads all BMI input, and sets all BMI variables: Height, Weight, Name, and UnitType 
         /// </summary>
         /// <returns>True if height and weight are correct values</returns>
         private bool ReadInputBMI()
@@ -201,7 +203,7 @@ namespace WinFormsApp2
 
         /// <summary>
         /// Reads user-input Name from textbox, and uses SetName to set its variable.
-        /// Also uses StringExtentionMethod 'IsNotNullOrEmpty' instead, to check string validity
+        /// Uses StringExtentionMethod 'IsNotNullOrEmpty' to check string validity
         /// </summary>
         private void ReadName()
         {
@@ -517,6 +519,11 @@ namespace WinFormsApp2
         #endregion
 
         #region Readers
+
+        /// <summary>
+        /// Reads all BMR input, and sets all BMR variables: Height, Weight, Age, Gender, and ActivityLevel
+        /// </summary>
+        /// <returns>True if height and weight are correct values</returns>
         private bool ReadBMRInput()
         {
             ReadAge();
@@ -528,6 +535,11 @@ namespace WinFormsApp2
 
             return heightOK && weightOK;
         }
+
+        /// <summary>
+        /// Reads user input age from txtAge for the BMR calculation. 
+        /// Gives ok if user inputs a correct number.
+        /// </summary>
         private void ReadAge()
         {
             bool ok = int.TryParse(txtBMRAge.Text.Trim(), out int age);
@@ -546,17 +558,25 @@ namespace WinFormsApp2
                 MessageBox.Show("Invalid age value!", "Error!");
             }
         }
+
+        /// <summary>
+        /// Reads user-input gender from the radio buttons, and sets the Gender
+        /// </summary>
         private void ReadGender()
         {
             if (rbtnMale.Checked)
             {
-                bmrCalc.SetActivityLevel(ActivityLevels.Sedentary);
+                bmrCalc.SetGender(BMRGender.Female);
             }
             else if (rbtnFemale.Checked)
             {
-                bmrCalc.SetActivityLevel(ActivityLevels.Sedentary);
+                bmrCalc.SetGender(BMRGender.Male);
             }
         }
+
+        /// <summary>
+        /// Reads user-input ActivityLevel from the radio buttons, and sets the ActivityLevel
+        /// </summary>
         private void ReadActivityLevel()
         {
             if (rbtnSedentary.Checked)
@@ -582,18 +602,21 @@ namespace WinFormsApp2
         }
         #endregion
 
+        /// <summary>
+        /// Display BMR results, BMR and MaintainWeightBMR in a listbox
+        /// </summary>
         private void DisplayResultsBMR()
         { 
             double maintainWeightBMR = bmrCalc.CalculateMaintainWeightBMRs();
             listboxBMR.Items.Clear();
             listboxBMR.Items.Add("BMR RESULTS");
             listboxBMR.Items.Add("");
-            listboxBMR.Items.Add($"Your BMR (calories/day){new string (' ',65)}{bmrCalc.CalculateBMR():##0000.0}");
-            listboxBMR.Items.Add($"Calories to maintain your weight {new string(' ', 49)}{maintainWeightBMR:##0000.0}");
-            listboxBMR.Items.Add($"Calories to lose 0,5 kg per week {new string(' ', 52)}{(maintainWeightBMR - 500):##0000.0}");
-            listboxBMR.Items.Add($"Calories to lose 1 kg per week {new string(' ', 55)}{(maintainWeightBMR - 1000):##0000.0}");
-            listboxBMR.Items.Add($"Calories to gain 0,5 kg per week {new string(' ', 52)}{(maintainWeightBMR + 500):##0000.0}");
-            listboxBMR.Items.Add($"Calories to gain 1 kg per week {new string(' ', 55)}{(maintainWeightBMR + 1000):##0000.0}");
+            listboxBMR.Items.Add($"Your BMR (calories/day){new string (' ',65)}{bmrCalc.CalculateBMR():##000.0}");
+            listboxBMR.Items.Add($"Calories to maintain your weight {new string(' ', 49)}{maintainWeightBMR:##000.0}");
+            listboxBMR.Items.Add($"Calories to lose 0,5 kg per week {new string(' ', 52)}{(maintainWeightBMR - 500):##000.0}");
+            listboxBMR.Items.Add($"Calories to lose 1 kg per week {new string(' ', 55)}{(maintainWeightBMR - 1000):##000.0}");
+            listboxBMR.Items.Add($"Calories to gain 0,5 kg per week {new string(' ', 52)}{(maintainWeightBMR + 500):##000.0}");
+            listboxBMR.Items.Add($"Calories to gain 1 kg per week {new string(' ', 55)}{(maintainWeightBMR + 1000):##000.0}");
             listboxBMR.Items.Add("");
             listboxBMR.Items.Add("Losing more than 1000 calories per day is to be avoided.");
         }
