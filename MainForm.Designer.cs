@@ -34,11 +34,11 @@
             txtBMIHeight = new TextBox();
             lblWeight = new Label();
             txtBMIWeight = new TextBox();
-            groupBox1 = new GroupBox();
+            grpUnits = new GroupBox();
             rbtnUsUnit = new RadioButton();
             rbtnMetric = new RadioButton();
             btnBMICalculate = new Button();
-            grpResults = new GroupBox();
+            grpBMIResults = new GroupBox();
             lblNormalWeight = new Label();
             lblNormalBMI = new Label();
             lblResultWeightCategory = new Label();
@@ -48,7 +48,7 @@
             txtBMIUSInches = new TextBox();
             lblFeet = new Label();
             lblInches = new Label();
-            grpBMICalculator = new GroupBox();
+            grpHealthCalculator = new GroupBox();
             grpSavingPlan = new GroupBox();
             txtFees = new TextBox();
             label5 = new Label();
@@ -72,11 +72,7 @@
             label8 = new Label();
             btnSavingsClear = new Button();
             grpBMRCalculator = new GroupBox();
-            txtBMRHeight = new TextBox();
-            txtBMRWeight = new TextBox();
-            label12 = new Label();
             btnCalculateBMR = new Button();
-            label11 = new Label();
             listboxBMR = new ListBox();
             groupBox4 = new GroupBox();
             rbtnExtraActive = new RadioButton();
@@ -89,9 +85,9 @@
             rbtnMale = new RadioButton();
             rbtnFemale = new RadioButton();
             label10 = new Label();
-            groupBox1.SuspendLayout();
-            grpResults.SuspendLayout();
-            grpBMICalculator.SuspendLayout();
+            grpUnits.SuspendLayout();
+            grpBMIResults.SuspendLayout();
+            grpHealthCalculator.SuspendLayout();
             grpSavingPlan.SuspendLayout();
             groupBox2.SuspendLayout();
             grpBMRCalculator.SuspendLayout();
@@ -147,17 +143,17 @@
             txtBMIWeight.Size = new Size(51, 23);
             txtBMIWeight.TabIndex = 2;
             // 
-            // groupBox1
+            // grpUnits
             // 
-            groupBox1.BackColor = Color.FromArgb(192, 192, 255);
-            groupBox1.Controls.Add(rbtnUsUnit);
-            groupBox1.Controls.Add(rbtnMetric);
-            groupBox1.Location = new Point(395, 12);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(150, 153);
-            groupBox1.TabIndex = 6;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Unit";
+            grpUnits.BackColor = SystemColors.Control;
+            grpUnits.Controls.Add(rbtnUsUnit);
+            grpUnits.Controls.Add(rbtnMetric);
+            grpUnits.Location = new Point(395, 12);
+            grpUnits.Name = "grpUnits";
+            grpUnits.Size = new Size(150, 153);
+            grpUnits.TabIndex = 6;
+            grpUnits.TabStop = false;
+            grpUnits.Text = "Unit";
             // 
             // rbtnUsUnit
             // 
@@ -184,7 +180,7 @@
             // btnBMICalculate
             // 
             btnBMICalculate.BackColor = Color.FromArgb(192, 192, 255);
-            btnBMICalculate.Location = new Point(221, 172);
+            btnBMICalculate.Location = new Point(184, 23);
             btnBMICalculate.Name = "btnBMICalculate";
             btnBMICalculate.Size = new Size(150, 27);
             btnBMICalculate.TabIndex = 3;
@@ -192,26 +188,27 @@
             btnBMICalculate.UseVisualStyleBackColor = false;
             btnBMICalculate.Click += btnBMICalc_Click;
             // 
-            // grpResults
+            // grpBMIResults
             // 
-            grpResults.BackColor = Color.FromArgb(192, 192, 255);
-            grpResults.Controls.Add(lblNormalWeight);
-            grpResults.Controls.Add(lblNormalBMI);
-            grpResults.Controls.Add(lblResultWeightCategory);
-            grpResults.Controls.Add(lblResultYourBMI);
-            grpResults.Controls.Add(lblWeightCategory);
-            grpResults.Controls.Add(lblYourBMI);
-            grpResults.Location = new Point(25, 204);
-            grpResults.Name = "grpResults";
-            grpResults.Size = new Size(520, 184);
-            grpResults.TabIndex = 8;
-            grpResults.TabStop = false;
-            grpResults.Text = "Results";
+            grpBMIResults.BackColor = Color.FromArgb(192, 192, 255);
+            grpBMIResults.Controls.Add(lblNormalWeight);
+            grpBMIResults.Controls.Add(lblNormalBMI);
+            grpBMIResults.Controls.Add(btnBMICalculate);
+            grpBMIResults.Controls.Add(lblResultWeightCategory);
+            grpBMIResults.Controls.Add(lblResultYourBMI);
+            grpBMIResults.Controls.Add(lblWeightCategory);
+            grpBMIResults.Controls.Add(lblYourBMI);
+            grpBMIResults.Location = new Point(25, 171);
+            grpBMIResults.Name = "grpBMIResults";
+            grpBMIResults.Size = new Size(520, 217);
+            grpBMIResults.TabIndex = 8;
+            grpBMIResults.TabStop = false;
+            grpBMIResults.Text = "BMI Results";
             // 
             // lblNormalWeight
             // 
             lblNormalWeight.ForeColor = Color.DarkViolet;
-            lblNormalWeight.Location = new Point(28, 141);
+            lblNormalWeight.Location = new Point(28, 179);
             lblNormalWeight.Name = "lblNormalWeight";
             lblNormalWeight.Size = new Size(464, 23);
             lblNormalWeight.TabIndex = 5;
@@ -220,7 +217,7 @@
             // 
             // lblNormalBMI
             // 
-            lblNormalBMI.Location = new Point(244, 104);
+            lblNormalBMI.Location = new Point(244, 142);
             lblNormalBMI.Name = "lblNormalBMI";
             lblNormalBMI.Size = new Size(248, 23);
             lblNormalBMI.TabIndex = 4;
@@ -230,7 +227,7 @@
             // lblResultWeightCategory
             // 
             lblResultWeightCategory.BorderStyle = BorderStyle.Fixed3D;
-            lblResultWeightCategory.Location = new Point(244, 68);
+            lblResultWeightCategory.Location = new Point(244, 106);
             lblResultWeightCategory.Name = "lblResultWeightCategory";
             lblResultWeightCategory.Size = new Size(248, 23);
             lblResultWeightCategory.TabIndex = 3;
@@ -239,7 +236,7 @@
             // lblResultYourBMI
             // 
             lblResultYourBMI.BorderStyle = BorderStyle.Fixed3D;
-            lblResultYourBMI.Location = new Point(426, 32);
+            lblResultYourBMI.Location = new Point(426, 70);
             lblResultYourBMI.Name = "lblResultYourBMI";
             lblResultYourBMI.Size = new Size(66, 23);
             lblResultYourBMI.TabIndex = 2;
@@ -248,7 +245,7 @@
             // lblWeightCategory
             // 
             lblWeightCategory.AutoSize = true;
-            lblWeightCategory.Location = new Point(28, 72);
+            lblWeightCategory.Location = new Point(28, 110);
             lblWeightCategory.Name = "lblWeightCategory";
             lblWeightCategory.Size = new Size(96, 15);
             lblWeightCategory.TabIndex = 1;
@@ -257,7 +254,7 @@
             // lblYourBMI
             // 
             lblYourBMI.AutoSize = true;
-            lblYourBMI.Location = new Point(28, 36);
+            lblYourBMI.Location = new Point(28, 74);
             lblYourBMI.Name = "lblYourBMI";
             lblYourBMI.Size = new Size(55, 15);
             lblYourBMI.TabIndex = 0;
@@ -289,23 +286,23 @@
             lblInches.TabIndex = 11;
             lblInches.Text = "in";
             // 
-            // grpBMICalculator
+            // grpHealthCalculator
             // 
-            grpBMICalculator.BackColor = Color.FromArgb(192, 192, 255);
-            grpBMICalculator.Controls.Add(lblName);
-            grpBMICalculator.Controls.Add(txtBMIName);
-            grpBMICalculator.Controls.Add(lblFeet);
-            grpBMICalculator.Controls.Add(txtBMIHeight);
-            grpBMICalculator.Controls.Add(txtBMIUSInches);
-            grpBMICalculator.Controls.Add(lblHeight);
-            grpBMICalculator.Controls.Add(txtBMIWeight);
-            grpBMICalculator.Controls.Add(lblWeight);
-            grpBMICalculator.Location = new Point(25, 12);
-            grpBMICalculator.Name = "grpBMICalculator";
-            grpBMICalculator.Size = new Size(364, 153);
-            grpBMICalculator.TabIndex = 12;
-            grpBMICalculator.TabStop = false;
-            grpBMICalculator.Text = "BMI Calculator";
+            grpHealthCalculator.BackColor = SystemColors.Control;
+            grpHealthCalculator.Controls.Add(lblName);
+            grpHealthCalculator.Controls.Add(txtBMIName);
+            grpHealthCalculator.Controls.Add(lblFeet);
+            grpHealthCalculator.Controls.Add(txtBMIHeight);
+            grpHealthCalculator.Controls.Add(txtBMIUSInches);
+            grpHealthCalculator.Controls.Add(lblHeight);
+            grpHealthCalculator.Controls.Add(txtBMIWeight);
+            grpHealthCalculator.Controls.Add(lblWeight);
+            grpHealthCalculator.Location = new Point(25, 12);
+            grpHealthCalculator.Name = "grpHealthCalculator";
+            grpHealthCalculator.Size = new Size(364, 153);
+            grpHealthCalculator.TabIndex = 12;
+            grpHealthCalculator.TabStop = false;
+            grpHealthCalculator.Text = "Health Calculators";
             // 
             // grpSavingPlan
             // 
@@ -522,11 +519,7 @@
             // grpBMRCalculator
             // 
             grpBMRCalculator.BackColor = Color.FromArgb(192, 255, 192);
-            grpBMRCalculator.Controls.Add(txtBMRHeight);
-            grpBMRCalculator.Controls.Add(txtBMRWeight);
-            grpBMRCalculator.Controls.Add(label12);
             grpBMRCalculator.Controls.Add(btnCalculateBMR);
-            grpBMRCalculator.Controls.Add(label11);
             grpBMRCalculator.Controls.Add(listboxBMR);
             grpBMRCalculator.Controls.Add(groupBox4);
             grpBMRCalculator.Controls.Add(txtBMRAge);
@@ -539,56 +532,24 @@
             grpBMRCalculator.TabStop = false;
             grpBMRCalculator.Text = "BMR Calculator";
             // 
-            // txtBMRHeight
-            // 
-            txtBMRHeight.Location = new Point(196, 30);
-            txtBMRHeight.Name = "txtBMRHeight";
-            txtBMRHeight.Size = new Size(51, 23);
-            txtBMRHeight.TabIndex = 11;
-            // 
-            // txtBMRWeight
-            // 
-            txtBMRWeight.Location = new Point(196, 59);
-            txtBMRWeight.Name = "txtBMRWeight";
-            txtBMRWeight.Size = new Size(51, 23);
-            txtBMRWeight.TabIndex = 12;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(130, 62);
-            label12.Name = "label12";
-            label12.Size = new Size(45, 15);
-            label12.TabIndex = 20;
-            label12.Text = "Weight";
-            // 
             // btnCalculateBMR
             // 
             btnCalculateBMR.BackColor = Color.FromArgb(192, 255, 192);
-            btnCalculateBMR.Location = new Point(43, 138);
+            btnCalculateBMR.Location = new Point(14, 156);
             btnCalculateBMR.Name = "btnCalculateBMR";
-            btnCalculateBMR.Size = new Size(150, 27);
+            btnCalculateBMR.Size = new Size(110, 27);
             btnCalculateBMR.TabIndex = 14;
             btnCalculateBMR.Text = "Calculate BMR";
             btnCalculateBMR.UseVisualStyleBackColor = false;
             btnCalculateBMR.Click += btnCalculateBMR_Click;
             // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(130, 32);
-            label11.Name = "label11";
-            label11.Size = new Size(43, 15);
-            label11.TabIndex = 19;
-            label11.Text = "Height";
-            // 
             // listboxBMR
             // 
             listboxBMR.FormattingEnabled = true;
             listboxBMR.ItemHeight = 15;
-            listboxBMR.Location = new Point(436, 30);
+            listboxBMR.Location = new Point(413, 30);
             listboxBMR.Name = "listboxBMR";
-            listboxBMR.Size = new Size(404, 154);
+            listboxBMR.Size = new Size(427, 154);
             listboxBMR.TabIndex = 14;
             listboxBMR.TabStop = false;
             // 
@@ -599,9 +560,9 @@
             groupBox4.Controls.Add(rbtnModeratelyActive);
             groupBox4.Controls.Add(rbtnLightlyActive);
             groupBox4.Controls.Add(rbtnSedentary);
-            groupBox4.Location = new Point(253, 22);
+            groupBox4.Location = new Point(145, 22);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(177, 162);
+            groupBox4.Size = new Size(246, 162);
             groupBox4.TabIndex = 13;
             groupBox4.TabStop = false;
             groupBox4.Text = "Weekly Activity Level";
@@ -658,7 +619,7 @@
             // 
             // txtBMRAge
             // 
-            txtBMRAge.Location = new Point(196, 88);
+            txtBMRAge.Location = new Point(73, 114);
             txtBMRAge.Name = "txtBMRAge";
             txtBMRAge.Size = new Size(51, 23);
             txtBMRAge.TabIndex = 13;
@@ -669,7 +630,7 @@
             groupBox3.Controls.Add(rbtnFemale);
             groupBox3.Location = new Point(6, 22);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(118, 91);
+            groupBox3.Size = new Size(118, 78);
             groupBox3.TabIndex = 7;
             groupBox3.TabStop = false;
             groupBox3.Text = "Gender";
@@ -697,7 +658,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(130, 91);
+            label10.Location = new Point(20, 117);
             label10.Name = "label10";
             label10.Size = new Size(28, 15);
             label10.TabIndex = 12;
@@ -713,22 +674,21 @@
             Controls.Add(groupBox2);
             Controls.Add(btnSavingCalculate);
             Controls.Add(grpSavingPlan);
-            Controls.Add(grpBMICalculator);
+            Controls.Add(grpHealthCalculator);
             Controls.Add(lblInches);
-            Controls.Add(grpResults);
-            Controls.Add(btnBMICalculate);
-            Controls.Add(groupBox1);
+            Controls.Add(grpBMIResults);
+            Controls.Add(grpUnits);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Super Calculator, by Lucas Mårdby";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            grpResults.ResumeLayout(false);
-            grpResults.PerformLayout();
-            grpBMICalculator.ResumeLayout(false);
-            grpBMICalculator.PerformLayout();
+            grpUnits.ResumeLayout(false);
+            grpUnits.PerformLayout();
+            grpBMIResults.ResumeLayout(false);
+            grpBMIResults.PerformLayout();
+            grpHealthCalculator.ResumeLayout(false);
+            grpHealthCalculator.PerformLayout();
             grpSavingPlan.ResumeLayout(false);
             grpSavingPlan.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -751,11 +711,11 @@
         private TextBox txtBMIHeight;
         private Label lblWeight;
         private TextBox txtBMIWeight;
-        private GroupBox groupBox1;
+        private GroupBox grpUnits;
         private RadioButton rbtnUsUnit;
         private RadioButton rbtnMetric;
         private Button btnBMICalculate;
-        private GroupBox grpResults;
+        private GroupBox grpBMIResults;
         private Label lblResultYourBMI;
         private Label lblWeightCategory;
         private Label lblYourBMI;
@@ -765,7 +725,7 @@
         private TextBox txtBMIUSInches;
         private Label lblFeet;
         private Label lblInches;
-        private GroupBox grpBMICalculator;
+        private GroupBox grpHealthCalculator;
         private GroupBox grpSavingPlan;
         private TextBox txtFees;
         private Label label5;
@@ -802,9 +762,5 @@
         private RadioButton rbtnModeratelyActive;
         private RadioButton rbtnLightlyActive;
         private Button btnCalculateBMR;
-        private Label label11;
-        private Label label12;
-        private TextBox txtBMRHeight;
-        private TextBox txtBMRWeight;
     }
 }

@@ -2,7 +2,7 @@ namespace WinFormsApp2
 {
     /// <summary>
     /// MainForm class which takes care of the WinForm. 
-    /// Instance variables at the top for each of the classes.
+    /// Instance variwables at the top for each of the classes.
     /// </summary>
     public partial class MainForm : Form
     {
@@ -29,10 +29,12 @@ namespace WinFormsApp2
             InitializeGUIBMR();
         }
 
+
         #region Height and Weight, BMI and BMR
         /// <summary>
         /// Reads user input height for the BMI and BMR calculations.
         /// For BMI, it calculates the input into the correct measurement, depending on the unit.
+        /// For BMR, if using Imperial Units, it first converts in into cm for the BMR calculation
         /// </summary>
         /// <param name="heightBox">Takes the Height Textboxes as params, depending on if you're
         /// calculating BMI or BMR</param>
@@ -57,6 +59,7 @@ namespace WinFormsApp2
                 else if (bmiCalc.GetUnit() == UnitTypes.Imperial)
                 {
                     bmiCalc.SetHeight(height * 12.00 + heightInches);
+                    bmrCalc.SetHeight((height * 12.00 + heightInches) * 2.54);
                 }
             }
             else
@@ -74,6 +77,7 @@ namespace WinFormsApp2
         /// <summary>
         /// Reads user input weight for the BMI and BMR calculations.
         /// For BMI, it calculates the input into the correct measurement, depending on the unit.
+        /// For BMR, if using Imperial Units, it first converts lbs into kg for the BMR calculation
         /// </summary>
         /// <param name="weightBox">Takes the Weight Textboxes as params, depending on if you're
         /// calculating BMI or BMR</param>
@@ -92,6 +96,7 @@ namespace WinFormsApp2
                 else
                 {
                     bmiCalc.SetWeight(weight * 703.00);
+                    bmrCalc.SetWeight(weight * 0.453);
                 }
             }
             else
@@ -107,6 +112,51 @@ namespace WinFormsApp2
             return ok;
         }
         #endregion
+
+        #region Metric or Imperial Units
+        /// <summary>
+        /// Metric Radio Button, changing the units on the GUI and the UnitType to Metric.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rbtnMetric_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnMetric.Checked)
+            {
+                txtBMIHeight.Text = string.Empty;
+                txtBMIWeight.Text = string.Empty;
+
+                lblHeight.Text = "Height (cm)";
+                lblWeight.Text = "Weight (kg)";
+
+                lblFeet.Visible = false;
+                lblInches.Visible = false;
+                txtBMIUSInches.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Imperial Radio Button, changing the units on the GUI and the UnitType to Imperial.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rbtnUsUnit_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnUsUnit.Checked)
+            {
+                txtBMIHeight.Text = string.Empty;
+                txtBMIWeight.Text = string.Empty;
+
+                lblHeight.Text = "Height (feet)";
+                lblWeight.Text = "Weight (lbs)";
+
+                lblFeet.Visible = true;
+                lblInches.Visible = true;
+                txtBMIUSInches.Visible = true;
+            }
+        }
+        #endregion
+
 
         #region BMICalculator
 
@@ -144,42 +194,6 @@ namespace WinFormsApp2
             if (ok)
             {
                 DisplayResultsBMI();
-            }
-        }
-
-        /// <summary>
-        /// Metric Radio Button, changing the units on the GUI and the UnitType to Metric.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void rbtnMetric_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbtnMetric.Checked)
-            {
-                lblHeight.Text = "Height (cm)";
-                lblWeight.Text = "Weight (kg)";
-
-                lblFeet.Visible = false;
-                lblInches.Visible = false;
-                txtBMIUSInches.Visible = false;
-            }
-        }
-
-        /// <summary>
-        /// Imperial Radio Button, changing the units on the GUI and the UnitType to Imperial.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void rbtnUsUnit_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbtnUsUnit.Checked)
-            {
-                lblHeight.Text = "Height (feet)";
-                lblWeight.Text = "Weight (lbs)";
-
-                lblFeet.Visible = true;
-                lblInches.Visible = true;
-                txtBMIUSInches.Visible = true;
             }
         }
         #endregion
@@ -241,7 +255,7 @@ namespace WinFormsApp2
         {
             lblResultYourBMI.Text = bmiCalc.CalculateBMI(bmiCalc.GetHeight(), bmiCalc.GetWeight()).ToString("0.00");
             lblResultWeightCategory.Text = bmiCalc.BMIWeightCategory();
-            grpResults.Text = $"Results for {bmiCalc.GetName()}";
+            grpBMIResults.Text = $"Results for {bmiCalc.GetName()}";
             lblNormalWeight.Text = bmiCalc.CalculateNormalWeight();
             lblNormalBMI.Text = "Normal BMI is between 18.50 and 24.90";
         }
@@ -490,8 +504,6 @@ namespace WinFormsApp2
         private void InitializeGUIBMR()
         {
             txtBMRAge.Text = string.Empty;
-            txtBMRHeight.Text = string.Empty;
-            txtBMRWeight.Text = string.Empty;
 
             rbtnFemale.Checked = true;
             rbtnSedentary.Checked = true;
@@ -507,8 +519,6 @@ namespace WinFormsApp2
         /// <param name="e"></param>
         private void btnCalculateBMR_Click(object sender, EventArgs e)
         {
-            bmiCalc.SetUnit(UnitTypes.Metric);
-
             bool ok = ReadBMRInput();
 
             if (ok)
@@ -526,12 +536,15 @@ namespace WinFormsApp2
         /// <returns>True if height and weight are correct values</returns>
         private bool ReadBMRInput()
         {
+            ReadName();
+            ReadUnitType();
+
             ReadAge();
             ReadGender();
             ReadActivityLevel();
 
-            bool heightOK = ReadHeight(txtBMRHeight);
-            bool weightOK = ReadWeight(txtBMRWeight);
+            bool heightOK = ReadHeight(txtBMIHeight);
+            bool weightOK = ReadWeight(txtBMIWeight);
 
             return heightOK && weightOK;
         }
@@ -606,12 +619,12 @@ namespace WinFormsApp2
         /// Display BMR results, BMR and MaintainWeightBMR in a listbox
         /// </summary>
         private void DisplayResultsBMR()
-        { 
+        {
             double maintainWeightBMR = bmrCalc.CalculateMaintainWeightBMRs();
             listboxBMR.Items.Clear();
-            listboxBMR.Items.Add("BMR RESULTS");
+            listboxBMR.Items.Add($"BMR RESULTS FOR {bmiCalc.GetName().ToUpper()}");
             listboxBMR.Items.Add("");
-            listboxBMR.Items.Add($"Your BMR (calories/day){new string (' ',65)}{bmrCalc.CalculateBMR():##000.0}");
+            listboxBMR.Items.Add($"Your BMR (calories/day){new string(' ', 65)}{bmrCalc.CalculateBMR():##000.0}");
             listboxBMR.Items.Add($"Calories to maintain your weight {new string(' ', 49)}{maintainWeightBMR:##000.0}");
             listboxBMR.Items.Add($"Calories to lose 0,5 kg per week {new string(' ', 52)}{(maintainWeightBMR - 500):##000.0}");
             listboxBMR.Items.Add($"Calories to lose 1 kg per week {new string(' ', 55)}{(maintainWeightBMR - 1000):##000.0}");
@@ -622,7 +635,5 @@ namespace WinFormsApp2
         }
 
         #endregion
-
-        
     }
 }
