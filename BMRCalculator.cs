@@ -116,17 +116,16 @@
         public double CalculateBMR()
         {
             double BMR = 0.00;
-            int genderFactor = 0;
 
             BMR = 10 * weight + 6.25 * height - 5 * age;
 
             if (GetGender() == BMRGender.Female)
             {
-                BMR -= 161;
+                BMR = BMR - 161;
             }
             else if (GetGender() == BMRGender.Male)
             {
-                BMR += 5;
+                BMR = BMR + 5;
             }
 
             return BMR;

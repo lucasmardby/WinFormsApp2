@@ -577,11 +577,11 @@ namespace WinFormsApp2
         /// </summary>
         private void ReadGender()
         {
-            if (rbtnMale.Checked)
+            if (rbtnFemale.Checked)
             {
                 bmrCalc.SetGender(BMRGender.Female);
             }
-            else if (rbtnFemale.Checked)
+            else if (rbtnMale.Checked)
             {
                 bmrCalc.SetGender(BMRGender.Male);
             }
